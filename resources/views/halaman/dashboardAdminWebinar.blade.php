@@ -4,18 +4,45 @@
 @section('content')
 
     <form class="max-w-sm mx-auto">
-
+        {{-- inout acara --}}
         <div class="mb-5">
             <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Event
                 Webinar</label>
             <input type="text" id="base-input"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Info Webinar</label>
+            {{-- info webinar --}}
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Info Webinar</label>
             <textarea id="message" rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Masukan Info Webinar.."></textarea>
+            {{-- tanggal Pelaksanaan --}}
+            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tanggal
+                Pelaksanaan</label>
+            <input type="date" id="base-input"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {{--Input nama Pemateri --}}
+            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pemateri</label>
+            <input type="text" id="base-input"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {{-- Waktu Pelaksanaan --}}
+            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Waktu</label>
+            <input type="time" id="base-input"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
+            {{-- Kategori online/offline --}}
+            <label for="pilKategori">Pilih Kategori: </label>
+            <select name="kategori" id="pilKategori">
+                <option value="online">Online</option>
+                <option value="offline">Offline</option>
+            </select>
+
+            {{-- tempat Pelaksanaan --}}
+
+            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tempat</label>
+            <input type="text" id="base-input"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+{{-- upload brosur/gambar --}}
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload
                 file</label>
             <input
