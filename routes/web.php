@@ -7,7 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -19,7 +18,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-=======
+
 Route::get('admin', function(){
     return view('layouts.adminLayouts');
 });
@@ -31,4 +30,4 @@ Route::get('/admin/lomba', function(){
 Route::get('/admin/webinar', function(){
     return view('halaman.dashboardAdminWebinar');
 })->name('halaman.dashboardAdminWebinar');
->>>>>>> f1ffea2275cad8b19bf83b873ee519457af10036
+
