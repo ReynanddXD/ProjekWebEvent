@@ -1,12 +1,10 @@
 @extends('layouts.adminLayouts')
-
-@section('title', 'Daftar Tabel')
 @section('content')
 
 <div class="container">
-    <h2>Manajemen Data Lomba</h2>
-    <a href="{{ route('webinar.create') }}" class="btn btn-primary mb-3">Tambah Webinar Baru</a>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <h2 class="text-2xl font-bold">Manajemen Data Lomba</h2>
+    <a href="{{ route('webinar.create') }}" class="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#FACC15] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#d3ac12] dark:hover:bg-[#ee0c0c] dark:focus:ring-blue-800">Tambah Webinar Baru</a>
+<div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
