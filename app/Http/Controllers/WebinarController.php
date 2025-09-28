@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class WebinarController extends Controller
 {
+    public function index(){
+         $semuaWebinar = Webinar::latest()->get();
+    return view('form.tabelWebinar', compact('semuaWebinar'));
+    }
     public function create(){
         return view('halaman.dashboardAdminWebinar');
     }
@@ -21,7 +25,7 @@ class WebinarController extends Controller
             'selesai'=>'required|date_format:H:i|after:mulai',
             'kategoriWebinar'=>'required|string',
             'tempat'=>'required|string',
-            'gambar'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar'=>'required|image|mimes:jpeg,png,jpg,gif|max:51200',
         ]);
 
         if ($request->hasFile('gambar')){

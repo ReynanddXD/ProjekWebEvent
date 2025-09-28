@@ -22,7 +22,20 @@
         @yield('content')
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js">
 
+    </script>
+<script>
+function validateFileSize() {
+    const fileInput = document.getElementById('file');
+    const maxSize = 50 * 1024 * 1024; // 50MB in bytes
+
+    if (fileInput.files[0] && fileInput.files[0].size > maxSize) {
+        alert('File size must be less than 50MB');
+        return false;
+    }
+    return true;
+}
+</script>
 </body>
 </html>
