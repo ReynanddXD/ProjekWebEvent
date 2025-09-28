@@ -17,7 +17,8 @@
     </main>
 
     <footer class="text-center py-4 text-gray-500">
-        &copy; {{ date('Y') }} MyReady. All Rights Reserved.
+       @include('partial.footer')
+        {{-- &copy; {{ date('Y') }} MyReady. All Rights Reserved. --}}
     </footer>
 
 </body>

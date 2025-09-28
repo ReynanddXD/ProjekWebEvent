@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('halaman.landingPage');
 });
 
+Route::get('/main', function () {
+    return view('layouts.main');
+});
+
 Route::view('/navbar',  view:'partial.navbar');
 Route::view('/footer',  view:'partial.footer');
 Route::get('/dashboarduser', [DashboarduserController::class, 'index'])

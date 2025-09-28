@@ -1,6 +1,4 @@
-@extends('layouts.app')
-@section('title', 'Navbar')
-@section('content')
+
 <!-- Include this script tag or install @tailwindplus/elements via npm: -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
         <nav class="relative bg-oklch(98.5% 0.001 106.423)">
@@ -51,4 +49,3 @@
         </div>
         </nav>
 </nav>
-@endsection
