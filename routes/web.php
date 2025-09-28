@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('halaman.landingPage');
 });
 
 // Route::get('/dashboard', function () {
@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/asd', function () {
     $user = Auth::user();
 
     if ($user->role === 'admin') {
