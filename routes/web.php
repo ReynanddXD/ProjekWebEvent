@@ -4,15 +4,35 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LombaController;
 use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+use App\Http\Controllers\DashboarduserController;
+
+=======
 use Illuminate\Support\Facades\Auth;
+>>>>>>> 626752ebc3a1d537c49ee22abb9298d09daef797
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
+Route::view('/navbar',  view:'partial.navbar');
+
+Route::view('/footer',  view:'partial.footer');
+
+Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
+    ->middleware('auth')
+    ->name('halaman.dashboarduser');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+=======
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+>>>>>>> 626752ebc3a1d537c49ee22abb9298d09daef797
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
