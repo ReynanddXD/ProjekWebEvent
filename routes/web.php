@@ -16,20 +16,18 @@ Route::get('/main', function () {
     return view('layouts.main');
 });
 
-Route::view('/navbar',  view:'partial.navbar');
-Route::view('/footer',  view:'partial.footer');
-Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
-    ->middleware('auth')
-    ->name('halaman.dashboarduser');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard-user', function () {
+    return view('halaman.dashboardUser');
+});
+// Route::view('/navbar',  view:'partial.navbar');
+// Route::view('/footer',  view:'partial.footer');
+// Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
+//     ->middleware('auth')
+//     ->name('halaman.dashboarduser');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -72,6 +70,7 @@ Route::get('/admin-dashboard', function () {
 // Route::get('/dashboard/admin/webinar',function(){
 //     return view('halaman.dashboardAdminWebinar');
 // })->middleware(['auth','verified','RoleCheck:admin'])->name('halaman.dashboardAdminWebinar');
+
 Route::get('/dashboard/admin/webinar',function(){
     return view('halaman.dashboardAdminWebinar');
 });
