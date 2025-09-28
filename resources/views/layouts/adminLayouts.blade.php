@@ -14,9 +14,11 @@
     <div>
        @include('partial.adminSidebar')
     </div>
-  <h1>TES ADMIN</h1>
-    <div>
-       <h1> @yield('title') </h1>
+    <div class="sm:ml-64">
+        <nav>
+            @include ('partial.navbarAdmin')
+        </nav>
+       <h1 class="p-1"> @yield('title') </h1>
         @yield('content')
     </div>
 
