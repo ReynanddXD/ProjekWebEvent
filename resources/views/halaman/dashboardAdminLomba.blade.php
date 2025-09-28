@@ -19,10 +19,25 @@
                 </ul>
             </div>
         @endif
+        <div class="flex items-center justify-center min-h-screen bg-gray-100">
+
+        <div class="relative w-full max-w-screen p-8 mx-4 bg-white rounded-lg shadow-lg">
+
+            <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+
+         <div class="flex flex-col justify-center">
+                    <h1 class="text-4xl font-bold text-gray-800">
+                       Input Lomba
+                    </h1>
+                    <p class="mt-4 text-gray-600">
+                        Silahkan input lomba pada kolom yang tersedia.
+                    </p>
+                </div>
+
 <div class="inline-flex">
-    <form action="{{ route('lomba.store') }}" method="POST" class="p-3 max-w-80 mx-auto " enctype="multipart/form-data">
+    <form action="{{ route('lomba.store') }}" method="POST" class="p-3 max-w-lg mx-auto " enctype="multipart/form-data">
   @csrf
-        <div class="mb-5">
+        <div class="mb-1">
             {{-- input nama lomba --}}
             <label for="namaLomba" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Lomba</label>
             <input type="text" id="namaLomba" name="lomba" value="{{ old('lomba') }}"
@@ -79,7 +94,7 @@
 
     </form>
 </div>
-<div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+{{-- <div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Daftar data Lomba</h5>
     </a>
@@ -90,8 +105,10 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
         </svg>
     </a>
-</div>
+</div> --}}
 
+</div>
+</div>
 </div>
 
 @endsection

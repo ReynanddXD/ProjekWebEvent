@@ -1,9 +1,6 @@
 @extends('layouts.adminLayouts')
-
-@section('title', 'Input Webinar Baru')
 @section('content')
     <div>
-        <h2>Form Input Webinar</h2>
 
         {{-- pesan suskes --}}
         @if (session('success'))
@@ -22,7 +19,20 @@
                 </ul>
             </div>
         @endif
+ <div class="flex items-center justify-center min-h-screen bg-gray-100">
 
+        <div class="relative w-full max-w-screen p-8 mx-4 bg-white rounded-lg shadow-lg">
+
+            <div class="grid grid-cols-1 gap-1 md:grid-cols-2">
+
+         <div class="flex flex-col justify-center">
+                    <h1 class="text-4xl font-bold text-gray-800">
+                       Input Webinar
+                    </h1>
+                    <p class="mt-4 text-gray-600">
+                        Silahkan input webinar pada kolom yang tersedia.
+                    </p>
+                </div>
         <form action="{{ route('webinar.store') }}" method="POST" class="max-w-sm mx-auto" enctype="multipart/form-data">
             @csrf
             {{-- input acara --}}
@@ -89,6 +99,9 @@
                 </button>
 
         </form>
+    </div>
+    </div>
+    </div>
     </div>
 
 @endsection
