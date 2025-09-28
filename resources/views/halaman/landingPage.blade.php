@@ -1,205 +1,136 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventPro - Your Premier Event Organizer</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
-    <style>
-        /* CSS Tambahan */
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1540575467063-178a50b28461?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        /* Animasi untuk efek masuk */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in-up { animation: fadeInUp 1s ease-out; }
-        .animate-fade-in-down { animation: fadeInDown 1s ease-out 0.5s forwards; opacity: 0; }
-        .animate-fade-in { animation: fadeIn 1.5s ease-out 1s forwards; opacity: 0; }
-    </style>
+    <title>MYREADY | Lomba & Event</title>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 </head>
-<body class="bg-gray-100 font-sans antialiased">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center text-white p-4">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-wide mb-4 animate-fade-in-up">
-                Kami Wujudkan <span class="text-indigo-400">Event Impianmu</span>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed top-0 w-full z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-2">
+                <img src="{{ asset('images/myready-logo.png') }}" alt="MYREADY" class="h-10">
+                <span class="sr-only">MYREADY</span>
+            </a>
+            
+            <!-- Menu -->
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="#home" class="hover:text-[#FACC15] transition">Home</a></li>
+                <li><a href="#lomba" class="hover:text-[#FACC15] transition">Lomba</a></li>
+                <li><a href="#webinar" class="hover:text-[#FACC15] transition">Webinar</a></li>
+                <li><a href="#about" class="hover:text-[#FACC15] transition">About</a></li>
+                <li><a href="#contact" class="hover:text-[#FACC15] transition">Contact</a></li>
+            </ul>
+
+            <!-- Auth Buttons -->
+            <div class="space-x-4">
+                <a href="{{ route('login') }}" 
+                   class="px-4 py-2 bg-[#1E3A8A] text-white rounded-lg shadow hover:bg-[#3B82F6]">Login</a>
+                <a href="{{ route('register') }}" 
+                   class="px-4 py-2 bg-[#FACC15] text-[#1E3A8A] rounded-lg shadow hover:bg-yellow-400">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative flex flex-col justify-center items-center text-center h-screen text-white overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1E3A8A] via-[#3B82F6] to-[#FACC15] opacity-95"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 px-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                Selamat Datang di <span class="text-[#FACC15]">MYREADY</span>
             </h1>
-            <p class="text-lg md:text-xl font-light mb-8 animate-fade-in-down">
-                Dari konser megah hingga intimate gathering, kami hadir untuk membuat setiap momen tak terlupakan.
+            <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
+                Ikuti berbagai lomba dan webinar untuk mengembangkan skill
             </p>
-            <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg animate-fade-in">
-                Mulai Sekarang
+            <a href="#lomba" 
+               class="px-6 py-3 bg-white text-[#1E3A8A] font-semibold rounded-lg shadow hover:bg-gray-100">
+               Mulai Jelajahi
             </a>
         </div>
     </section>
 
-    <section id="services" class="bg-white py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Layanan Kami</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-5xl text-indigo-600 mb-4">🎤</div>
-                    <h3 class="text-xl font-semibold mb-2">Konser & Pertunjukan</h3>
-                    <p class="text-gray-600">Manajemen lengkap untuk acara musik, pertunjukan seni, dan pameran.</p>
+    <!-- Section Lomba -->
+    <section id="lomba" class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#1E3A8A]">Lomba Populer</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#FACC15] hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-2">Lomba Desain Grafis</h3>
+                <p class="text-gray-600 mb-4">Tunjukkan kreativitasmu dalam desain dengan tema terbaru.</p>
+                <a href="#" class="text-[#1E3A8A] font-medium hover:underline">Daftar Sekarang →</a>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#FACC15] hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-2">Lomba Coding</h3>
+                <p class="text-gray-600 mb-4">Uji kemampuan problem solving dengan tantangan pemrograman.</p>
+                <a href="#" class="text-[#1E3A8A] font-medium hover:underline">Daftar Sekarang →</a>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#FACC15] hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-2">Lomba Fotografi</h3>
+                <p class="text-gray-600 mb-4">Abadikan momen terbaik dengan kreativitasmu.</p>
+                <a href="#" class="text-[#1E3A8A] font-medium hover:underline">Daftar Sekarang →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Webinar -->
+    <section id="webinar" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#1E3A8A]">Webinar Terkini</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-[#3B82F6] hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-2">Webinar Digital Marketing</h3>
+                    <p class="text-gray-600 mb-4">Pelajari strategi pemasaran digital terbaru bersama expert.</p>
+                    <a href="#" class="text-[#1E3A8A] font-medium hover:underline">Ikuti Webinar →</a>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-5xl text-indigo-600 mb-4">🎓</div>
-                    <h3 class="text-xl font-semibold mb-2">Seminar & Workshop</h3>
-                    <p class="text-gray-600">Fasilitasi profesional untuk acara edukasi, konferensi, dan workshop.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-5xl text-indigo-600 mb-4">🥳</div>
-                    <h3 class="text-xl font-semibold mb-2">Pesta & Perayaan</h3>
-                    <p class="text-gray-600">Perencanaan detail untuk pesta ulang tahun, pernikahan, dan gathering.</p>
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-[#3B82F6] hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-2">Webinar Data Science</h3>
+                    <p class="text-gray-600 mb-4">Pahami dasar data science dan peluang karirnya.</p>
+                    <a href="#" class="text-[#1E3A8A] font-medium hover:underline">Ikuti Webinar →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="why-us" class="bg-gray-100 py-20 px-4">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">Kenapa Pilih Kami?</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-5xl text-indigo-500 mb-4">💡</div>
-                    <h3 class="text-xl font-semibold mb-2">Kreatif & Inovatif</h3>
-                    <p class="text-gray-600">Kami selalu hadir dengan ide-ide segar untuk setiap event.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-5xl text-indigo-500 mb-4">✔️</div>
-                    <h3 class="text-xl font-semibold mb-2">Profesional & Terpercaya</h3>
-                    <p class="text-gray-600">Tim kami berpengalaman dalam menangani berbagai skala event.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-5xl text-indigo-500 mb-4">🤝</div>
-                    <h3 class="text-xl font-semibold mb-2">Pelayanan Prima</h3>
-                    <p class="text-gray-600">Kepuasan klien adalah prioritas utama kami.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-5xl text-indigo-500 mb-4">✨</div>
-                    <h3 class="text-xl font-semibold mb-2">Sistem Terintegrasi</h3>
-                    <p class="text-gray-600">Manajemen event yang terstruktur dan mudah diakses.</p>
-                </div>
-            </div>
-        </div>
+    <!-- About Section -->
+    <section id="about" class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#1E3A8A]">Tentang Kami</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
+            MYREADY hadir sebagai solusi bagi pelajar, mahasiswa, hingga profesional 
+            yang ingin mengikuti lomba dan webinar berkualitas. Kami percaya bahwa 
+            setiap orang memiliki potensi besar, dan melalui event yang tepat, 
+            potensi itu bisa berkembang dan berdampak positif bagi masyarakat.
+        </p>
     </section>
 
-    <section id="featured-events" class="py-20 px-4">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">Event Terbaru</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1519750153833-85579f18b628?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Event Musik" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mega Music Fest</h3>
-                        <p class="text-gray-600 text-sm mb-4">Konser musik dengan 10+ artis ternama. Cek keseruannya!</p>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors duration-300">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1505373877841-86699d457639?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Konferensi" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Innovation Tech Summit</h3>
-                        <p class="text-gray-600 text-sm mb-4">Konferensi teknologi terbesar tahun ini. Dapatkan wawasan terbaru.</p>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors duration-300">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1517409419266-9e6b36449176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pameran Seni" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Art & Craft Festival</h3>
-                        <p class="text-gray-600 text-sm mb-4">Pameran seni dan kerajinan dari seniman lokal dan internasional.</p>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold transition-colors duration-300">Lihat Detail &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="bg-gray-100 py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Kata Mereka</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-700 italic mb-4">"Layanan EventPro sangat profesional dan detail. Acara seminar kami berjalan sukses besar berkat mereka!"</p>
-                    <div class="font-semibold text-gray-900">- Budi Santoso, Direktur PT Maju Jaya</div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-700 italic mb-4">"Tim yang sangat kreatif! Pesta ulang tahun saya menjadi event paling berkesan. Terima kasih EventPro!"</p>
-                    <div class="font-semibold text-gray-900">- Sarah Wijaya, Klien Pribadi</div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-700 italic mb-4">"Mereka mengurus semuanya dengan sempurna. Kami sangat puas dengan hasil konser yang mereka tangani."</p>
-                    <div class="font-semibold text-gray-900">- Rian, Event Manager Musik Indie</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cta" class="bg-indigo-600 text-white py-20 px-4 text-center">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap untuk Eventmu?</h2>
-            <p class="text-lg mb-8">Hubungi kami sekarang untuk konsultasi gratis dan wujudkan event impianmu.</p>
-            <a href="#contact" class="bg-white text-indigo-600 hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                Hubungi Kami
+    <!-- Contact Section -->
+    <section id="contact" class="bg-[#1E3A8A] text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Hubungi Kami</h2>
+            <p class="mb-8">Ada pertanyaan atau ingin bekerja sama? Silakan hubungi kami.</p>
+            <a href="mailto:info@myready.com" 
+               class="px-6 py-3 bg-[#FACC15] text-[#1E3A8A] font-semibold rounded-lg shadow hover:bg-yellow-400">
+               Email Kami
             </a>
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-12 px-4">
-        <div class="container mx-auto text-center md:text-left">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">EventPro</h3>
-                    <p class="text-gray-400 text-sm">Event Organizer terbaik untuk semua kebutuhan acaramu.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Layanan</h4>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">Konser</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Seminar</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pesta</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pameran</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Informasi</h4>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">Tentang Kami</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Portofolio</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Karir</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Kontak</h4>
-                    <ul class="text-gray-400 space-y-2">
-                        <li>Email: info@eventpro.com</li>
-                        <li>Telepon: +62 812-3456-7890</li>
-                        <li>Alamat: Jl. Sudirman No. 123, Jakarta</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
-                &copy; 2024 EventPro. All Rights Reserved.
+    <!-- Footer -->
+    <footer class="bg-[#1E3A8A] text-gray-200 py-6 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 MYREADY. All rights reserved.</p>
+            <div class="space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-[#FACC15]">Privacy Policy</a>
+                <a href="#" class="hover:text-[#FACC15]">Terms of Service</a>
             </div>
         </div>
     </footer>
-    
+
 </body>
 </html>
