@@ -1,11 +1,20 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboarduserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/navbar',  view:'partial.navbar');
+
+Route::view('/navbar1',  view:'partial.navbar1');
+
+Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
+    ->middleware('auth')
+    ->name('halaman.dashboarduser');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
