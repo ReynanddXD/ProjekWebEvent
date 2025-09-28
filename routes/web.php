@@ -16,9 +16,7 @@ Route::get('/main', function () {
     return view('layouts.main');
 });
 
-Route::get('/dashboard-user', function () {
-    return view('halaman.dashboardUser');
-});
+Route::get('/dashboard-user',  [DashboarduserController::class, 'index']);
 // Route::view('/navbar',  view:'partial.navbar');
 // Route::view('/footer',  view:'partial.footer');
 // Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
