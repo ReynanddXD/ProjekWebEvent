@@ -17,7 +17,6 @@
             <a href="#lomba" class="hover:text-indigo-400 transition">Lomba</a>
             <a href="#webinar" class="hover:text-indigo-400 transition">Webinar</a>
             <a href="#contact" class="hover:text-indigo-400 transition">Kontak</a>
-            <a href="#" class="hover:text-indigo-400 transition">Kebijakan Privasi</a>
         </nav>
         
         <!-- 3. Sosial Media (Simpel) -->

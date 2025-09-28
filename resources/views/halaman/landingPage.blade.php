@@ -20,8 +20,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Hapus style lama untuk #hero-background */
-        /* Style untuk kedua lapisan background baru */
         .bg-cover-center {
             background-size: cover;
             background-position: center;
@@ -30,7 +28,9 @@
     <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
-
+    
+    @include('partial.navbar')
+    
     <section id="home" class="relative flex flex-col justify-center items-center text-center min-h-screen text-white overflow-hidden">
         
         <div id="hero-background-1" class="absolute inset-0 bg-cover-center transition-opacity duration-1000 opacity-100"></div>
@@ -41,17 +41,19 @@
         
         <div class="relative z-10 px-6 py-20">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
-                <a href="#" class="hover:text-yellow-400 transition-colors duration-300">
+                <a href="#home" class="hover:text-yellow-400 transition-colors duration-300">
                     Ayo Belajar Bareng di <span style="color: rgb(222, 222, 2);">MYREADY</span>
                 </a>
             </h1>
             <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto font-medium">
-                <a href="#" class="hover:text-gray-200 transition-colors duration-300">
+                <a href="#lomba" class="hover:text-gray-200 transition-colors duration-300">
                     Ikuti berbagai lomba dan webinar untuk mengembangkan skill dan potensi diri Anda.
                 </a>
             </p>
             <a href="#lomba" 
-               class="px-8 py-4 bg-white text-dark-indigo font-bold rounded-full shadow-2xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+            class="px-8 py-4 bg-white text-dark-indigo font-bold rounded-full shadow-2xl 
+                    hover:bg-dark-indigo 
+                    transition duration-300 transform hover:scale-105">
                 Mulai Jelajahi Event
             </a>
         </div>
@@ -59,14 +61,14 @@
 
     <section id="lomba" class="container mx-auto px-6 py-20">
         <h2 class="text-3xl font-bold text-center mb-16 text-dark-indigo">
-            <a href="#" class="hover:text-blue-700 transition-colors duration-300">
+            <a href="#lomba" class="hover:text-blue-700 transition-colors duration-300">
                 Lomba Populer Pilihan
             </a>
         </h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#">
+                <a href="#lomba">
                     <img src="https://placehold.co/600x400/1E3A8A/ffffff?text=Design+Competition" alt="Lomba Desain Grafis" class="w-full h-40 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Desain Grafis</h3>
@@ -82,7 +84,7 @@
             </div>
 
             <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#">
+                <a href="#lomba">
                     <img src="https://placehold.co/600x400/3B82F6/ffffff?text=Coding+Challenge" alt="Lomba Coding" class="w-full h-40 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Coding</h3>
@@ -98,7 +100,7 @@
             </div>
 
             <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#">
+                <a href="#lomba">
                     <img src="https://placehold.co/600x400/FACC15/1E3A8A?text=Photo+Contest" alt="Lomba Fotografi" class="w-full h-40 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Fotografi</h3>
@@ -114,7 +116,7 @@
             </div>
             
             <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#">
+                <a href="#lomba">
                     <img src="https://placehold.co/600x400/1E3A8A/FACC15?text=Video+Editing" alt="Lomba Video Editing" class="w-full h-40 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Video Editing</h3>
@@ -135,14 +137,14 @@
     <section id="webinar" class="bg-dark-indigo py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-16 text-white">
-                <a href="#" class="hover:text-gray-200 transition-colors duration-300">
+                <a href="#webinar" class="hover:text-gray-200 transition-colors duration-300">
                     Webinar Terkini dan Eksklusif
                 </a>
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                    <a href="#">
+                    <a href="#webinar">
                         <img src="https://placehold.co/700x400/3B82F6/ffffff?text=Digital+Marketing+Webinar" alt="Webinar Digital Marketing" class="w-full h-40 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Webinar Digital Marketing</h3>
@@ -159,7 +161,7 @@
                 </div>
                 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                    <a href="#">
+                    <a href="#webinar">
                         <img src="https://placehold.co/700x400/FACC15/1E3A8A?text=Data+Science+Masterclass" alt="Webinar Data Science" class="w-full h-40 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Webinar Data Science</h3>
@@ -180,14 +182,14 @@
 
     <section id="about" class="container mx-auto px-6 py-20">
         <h2 class="text-3xl font-bold text-center mb-12 text-dark-indigo">
-            <a href="#" class="hover:text-blue-700 transition-colors duration-300">
+            <a href="#about" class="hover:text-blue-700 transition-colors duration-300">
                 Tentang Kami
             </a>
         </h2>
         <p class="text-gray-700 text-center max-w-4xl mx-auto leading-relaxed text-lg">
-            <a href="#" class="hover:text-gray-900 transition-colors duration-300">
+            <a href="#about" class="hover:text-gray-900 transition-colors duration-300">
                 MYREADY hadir sebagai platform terdepan bagi pelajar, mahasiswa, hingga profesional 
-                yang ingin mencari dan mengikuti **lomba dan webinar berkualitas** di berbagai bidang. 
+                yang ingin mencari dan mengikuti lomba dan webinar berkualitas di berbagai bidang. 
                 Kami percaya bahwa setiap orang memiliki potensi besar, dan melalui event yang tepat, 
                 potensi itu bisa berkembang dan berdampak positif bagi masa depan karir Anda.
             </a>
@@ -197,13 +199,13 @@
     <section id="contact" class="bg-dark-indigo py-20 text-center text-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-6 text-white">
-                <a href="#" class="hover:text-gray-200 transition-colors duration-300">
+                <a href="#contact" class="hover:text-gray-200 transition-colors duration-300">
                     Siap Bersinergi?
                 </a>
             </h2>
 
             <p class="mb-10 text-gray-200 text-lg max-w-2xl mx-auto leading-relaxed">
-                <a href="#" class="hover:text-white transition-colors duration-300">
+                <a href="#contact" class="hover:text-white transition-colors duration-300">
                     Ada pertanyaan, ingin menjadi <em>partner</em> event, atau memberikan masukan?  
                     Silakan hubungi kami!
                 </a>
@@ -220,6 +222,7 @@
     @include('partial.footer') 
 
     <script>
+        // JAVASCRIPT UNTUK BACKGROUND IMAGE SLIDER
         const backgroundImages = [
             "{{ asset('img/bg1.jpg') }}",
             "{{ asset('img/bg3.jpg') }}",
@@ -227,50 +230,73 @@
         ];
         
         let currentImageIndex = 0;
-        // Ambil kedua elemen background
         const bg1 = document.getElementById('hero-background-1');
         const bg2 = document.getElementById('hero-background-2');
         
-        const intervalTime = 5000; // 8 detik total cycle time
-        // Transisi CSS diatur ke 1000ms (1 detik)
+        const intervalTime = 5000;
         
         let activeBackground = bg1;
         let inactiveBackground = bg2;
 
         function initBackground() {
-            // 1. Set gambar pertama pada bg1 (Aktif)
             bg1.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
             currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
-
-            // 2. Set gambar kedua pada bg2 (Tidak aktif/Tersembunyi)
-            // Ini akan memastikan gambar berikutnya siap dimuat saat dibutuhkan
             bg2.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
             currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
         }
 
         function changeBackground() {
-            // 1. Siapkan background yang saat ini Inaktif dengan gambar berikutnya
-            // Gambar ini akan menjadi Aktif di siklus berikutnya
             inactiveBackground.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
-
-            // 2. Cross-fade: Aktifkan yang Inaktif (opacity 1), Nonaktifkan yang Aktif (opacity 0)
-            // Karena satu div ditumpuk di atas yang lain, transisi ini mulus tanpa jeda putih
             activeBackground.style.opacity = '0';
             inactiveBackground.style.opacity = '1';
-
-            // 3. Tukar peran untuk siklus berikutnya
             [activeBackground, inactiveBackground] = [inactiveBackground, activeBackground];
-
-            // 4. Maju ke indeks gambar berikutnya
             currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
         }
         
-        // Initial load
         window.onload = function() {
             initBackground();
-            // Mulai siklus rotasi, memanggil changeBackground() setiap 8 detik
             setInterval(changeBackground, intervalTime);
         };
+
+        // JAVASCRIPT UNTUK SMOOTH SCROLL
+        document.addEventListener('DOMContentLoaded', () => {
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+            for (const anchorLink of anchorLinks) {
+                anchorLink.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#') && href.length > 1) {
+                        e.preventDefault();
+                        
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+        // JAVASCRIPT UNTUK NAVBAR TRANSPARAN SAAT SCROLL
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollPosition = window.scrollY;
+
+            // Jika posisi scroll lebih besar dari 50px, ubah warna navbar
+            if (scrollPosition > 50) {
+                navbar.classList.add('bg-dark-indigo', 'bg-opacity-90', 'shadow-lg');
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('text-white'); // Memastikan teks tetap putih setelah transisi
+            } else {
+                // Jika kembali ke atas, kembalikan navbar ke transparan
+                navbar.classList.remove('bg-dark-indigo', 'bg-opacity-90', 'shadow-lg');
+                navbar.classList.add('bg-transparent', 'text-white');
+            }
+        });
     </script>
 </body>
 </html>
