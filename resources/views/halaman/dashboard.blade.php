@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-5 container">
         <h1>DASHBOARD</h1>
-        <h2 class="mb-4">Selamat Datang di Dashboard Admin! tes</h2>
+        <h2 class="mb-4">Selamat Datang di Dashboard Admin!</h2>
 
         {{-- <div class="row">
             Kartu untuk Manajemen Lomba
