@@ -5,7 +5,7 @@ use App\Http\Controllers\LombaController;
 use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboarduserController;
-
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -121,3 +121,12 @@ Route::get('/check-limits', function() {
         'max_execution_time' => ini_get('max_execution_time'),
     ];
 });
+
+// narik data lomba di landing page
+Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
+// route untuk dashboard user
+Route::get('/dashboardUser', function () {
+    return view('halaman.dashboardUser');
+})->name('dashboardUser');
+
+

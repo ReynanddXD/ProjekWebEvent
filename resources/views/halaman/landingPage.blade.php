@@ -59,81 +59,46 @@
         </div>
     </section>
 
+    {{-- Lomba --}}
     <section id="lomba" class="container mx-auto px-6 py-20">
         <h2 class="text-3xl font-bold text-center mb-16 text-dark-indigo">
             <a href="#lomba" class="hover:text-blue-700 transition-colors duration-300">
                 Lomba Populer Pilihan
             </a>
         </h2>
+
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#lomba">
-                    <img src="https://placehold.co/600x400/1E3A8A/ffffff?text=Design+Competition" alt="Lomba Desain Grafis" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Desain Grafis</h3>
-                        <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Tunjukkan kreativitas visualmu dalam desain dengan tema terbaru dan menangkan hadiah jutaan.</p>
-                        <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Daftar Sekarang
-                        </span>
-                    </div>
-                </a>
-            </div>
+            @foreach($lombas as $lomba)
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 flex flex-col">
+                    <a href="{{ route('dashboardUser') }}" class="flex flex-col h-full">
+                        <img src="{{ asset('storage/' . $lomba->gambar) }}" 
+                            alt="{{ $lomba->lomba }}" 
+                            class="w-full h-40 object-cover">
 
-            <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#lomba">
-                    <img src="https://placehold.co/600x400/3B82F6/ffffff?text=Coding+Challenge" alt="Lomba Coding" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Coding</h3>
-                        <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Uji kemampuan *problem solving* dan pemrograman Anda dengan tantangan algoritma.</p>
-                        <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Daftar Sekarang
-                        </span>
-                    </div>
-                </a>
-            </div>
+                        {{-- isi card pakai flex-grow supaya deskripsi fleksibel --}}
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">
+                                {{ $lomba->lomba }}
+                            </h3>
+                            <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300 flex-grow">
+                                {{ $lomba->deskripsi }}
+                            </p>
 
-            <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#lomba">
-                    <img src="https://placehold.co/600x400/FACC15/1E3A8A?text=Photo+Contest" alt="Lomba Fotografi" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Fotografi</h3>
-                        <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Abadikan momen terbaik dengan kreativitasmu dan menangkan kamera profesional.</p>
-                        <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Daftar Sekarang
-                        </span>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                <a href="#lomba">
-                    <img src="https://placehold.co/600x400/1E3A8A/FACC15?text=Video+Editing" alt="Lomba Video Editing" class="w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Lomba Video Editing</h3>
-                        <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Tantang diri Anda dalam merangkai cerita visual yang menarik dan sinematik.</p>
-                        <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                            </svg>
-                            Daftar Sekarang
-                        </span>
-                    </div>
-                </a>
-            </div>
-            
+                            {{-- tombol selalu di bawah --}}
+                            <span class="text-amber-400-custom font-semibold hover:underline flex items-center mt-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Daftar Sekarang
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </section>
 
+    {{-- Webinar --}}
     <section id="webinar" class="bg-dark-indigo py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-16 text-white">
@@ -142,44 +107,35 @@
                 </a>
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                    <a href="#webinar">
-                        <img src="https://placehold.co/700x400/3B82F6/ffffff?text=Digital+Marketing+Webinar" alt="Webinar Digital Marketing" class="w-full h-40 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Webinar Digital Marketing</h3>
-                            <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Pelajari strategi pemasaran digital terbaru bersama *expert* dan tingkatkan *engagement* Anda.</p>
-                            <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                    <path d="M15 7v2a4 4 0 01-4 4H9.847l-1 1H11a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2v.228A4 4 0 017 8v5a2 2 0 002 2h2.153l1 1H15a2 2 0 002-2v-4a2 2 0 00-2-2z" />
-                                </svg>
-                                Ikuti Webinar
-                            </span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                    <a href="#webinar">
-                        <img src="https://placehold.co/700x400/FACC15/1E3A8A?text=Data+Science+Masterclass" alt="Webinar Data Science" class="w-full h-40 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">Webinar Data Science</h3>
-                            <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">Pahami dasar *Data Science* dan peluang karirnya di era industri 4.0.</p>
-                            <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                                    <path d="M15 7v2a4 4 0 01-4 4H9.847l-1 1H11a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2v.228A4 4 0 017 8v5a2 2 0 002 2h2.153l1 1H15a2 2 0 002-2v-4a2 2 0 00-2-2z" />
-                                </svg>
-                                Ikuti Webinar
-                            </span>
-                        </div>
-                    </a>
-                </div>
+                @foreach($webinars as $webinar)
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <a href="{{ route('dashboardUser') }}">
+                            <img src="{{ asset('storage/' . $webinar->gambar) }}" 
+                                alt="{{ $webinar->webinar }}" 
+                                class="w-full h-40 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-dark-indigo hover:text-blue-700 transition-colors duration-300">
+                                    {{ $webinar->webinar }}
+                                </h3>
+                                <p class="text-gray-600 mb-4 text-sm hover:text-gray-800 transition-colors duration-300">
+                                    {{ $webinar->deskripsiWebinar }}
+                                </p>
+                                <span class="text-amber-400-custom font-semibold hover:underline flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                        <path d="M15 7v2a4 4 0 01-4 4H9.847l-1 1H11a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2v.228A4 4 0 017 8v5a2 2 0 002 2h2.153l1 1H15a2 2 0 002-2v-4a2 2 0 00-2-2z" />
+                                    </svg>
+                                    Ikuti Webinar
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
 
+    {{-- About --}}
     <section id="about" class="container mx-auto px-6 py-20">
         <h2 class="text-3xl font-bold text-center mb-12 text-dark-indigo">
             <a href="#about" class="hover:text-blue-700 transition-colors duration-300">
@@ -196,6 +152,7 @@
         </p>
     </section>
 
+    {{-- Kontak --}}
     <section id="contact" class="bg-dark-indigo py-20 text-center text-white">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-6 text-white">
