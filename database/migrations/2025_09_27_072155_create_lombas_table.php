@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('lombas', function (Blueprint $table) {
             $table->id();
+            $table->string('lomba');
+            $table->date('pelaksanaan');
+            $table->string('penyelenggara');
+            $table->string ('kategoriPeserta');
+            $table->text('deskripsi')->nullable();
+            $table->string('gambar');
             $table->timestamps();
         });
     }
