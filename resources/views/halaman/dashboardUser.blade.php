@@ -1,6 +1,7 @@
-@section('title', 'Dashboard Pengguna')
-
+@extends('layouts.app')
+@section('title', 'Dashboard User')
 @section('content')
+
     <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">

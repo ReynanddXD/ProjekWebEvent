@@ -11,9 +11,12 @@ Route::get('/', function () {
 
 Route::view('/navbar',  view:'partial.navbar');
 
+Route::view('/footer',  view:'partial.footer');
+
 Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
     ->middleware('auth')
     ->name('halaman.dashboarduser');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
