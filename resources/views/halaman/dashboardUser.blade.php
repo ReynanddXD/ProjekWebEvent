@@ -9,7 +9,7 @@
         <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
 
               <a href="#">
-                <img class="w-full h-48 object-cover" src="{{ asset($lomba->gambar) }}" alt="Poster Lomba Bisnis">
+                <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $lomba->gambar) }}" alt="Poster Lomba Bisnis">
             </a>
 
             <div class="p-6 flex-grow">
@@ -20,7 +20,7 @@
                     <li>Lokasi: Online & Offline (Nasional)</li>
                     <li>Penyelenggara: {{ $lomba->penyelenggara }}</li>
                     <li>Tanggal: {{ $lomba->pelaksanaan }}</li>
-                    <li>Deskrisi: {{ $lomba->deskripsi }}</li>
+                    <li>Deskripsi: {{ Str::limit($lomba->deskripsi, 100) }}</li>
                 </ul>
             </div>
 
@@ -35,6 +35,8 @@
           @endforeach
 
         </div>
+
+
 
         {{-- <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
             <a href="#">
@@ -87,19 +89,29 @@
             </div>
         </div> --}}
 
-        {{-- <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
+          {{-- Loop card Webinar --}}
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
+           @foreach ($semuaWebinar as $webinar)
+
+
             <a href="#">
-                <img class="w-full h-48 object-cover" src="https://event.ruangmahasiswa.com/images/event/29d1d4c3ed83082fe4426744ea0579c0.jpg" alt="Poster Lomba Coding">
+                <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $webinar->gambar) }}" alt="Poster Lomba Coding">
             </a>
 
             <div class="p-6 flex-grow">
-                <h3 class="font-bold text-xl mb-2 text-gray-800">[PRESIDENT YOUTH LEADERSHIP CAMP 2025: OPEN REGISTRATION</h3>
+                <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $webinar->webinar }}</h3>
                 <p class="text-gray-700 text-base">
-                    - 11 Okt 2025 - 12 Okt 2025 <br>
-                    - 09:00 WIB - 16:00 WIB <br>
-                    - President university Bogor, Jawa Barat <br>
-                    - Penyelenggara: President university
+                    Tanggal: {{ $webinar->tanggal }} <br>
+                    Pemateri: {{ $webinar->pemateri }}<br>
+                    Mulai: {{ $webinar->mulai }} <br>
+                    Selesai: {{ $webinar->selesai }} <br>
+                    Kategori: {{ $webinar->kategoriWebinar }}
                 </p>
+                <ul>
+                    <li>
+                         <li>Deskripsi: {{ Str::limit($webinar->deskripsi, 100) }}</li>
+                    </li>
+                </ul>
             </div>
 
             <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
@@ -110,7 +122,8 @@
                     Daftar Sekarang
                 </button>
             </div>
-        </div> --}}
+        </div>
+         @endforeach
 
 
     </div>
