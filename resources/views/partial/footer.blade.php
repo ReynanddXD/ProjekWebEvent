@@ -1,33 +1,43 @@
-@extends('layouts.app')
-@section('title', 'Footer')
-@section('content')
-<footer class="flex flex-col space-y-10 justify-center m-10">
+<!-- resources/views/partials/footer.blade.php -->
 
-    <nav class="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
-        <a class="hover:text-gray-900" href="#">Home</a>
-        <a class="hover:text-gray-900" href="#">About</a>
-        <a class="hover:text-gray-900" href="#">Services</a>
-        <a class="hover:text-gray-900" href="#">Media</a>
-        <a class="hover:text-gray-900" href="#">Contact</a>
-    </nav>
+<footer class="bg-gray-900 text-gray-400 py-12">
+<div class="max-w-6xl mx-auto px-6 lg:px-8">
+<!-- Struktur Utama: Flex Container di Desktop -->
+<div class="flex flex-col items-center justify-between space-y-8 md:flex-row md:space-y-0">
 
-    <div class="flex justify-center space-x-5">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluent/30/000000/linkedin-2.png" />
-        </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" />
-        </a>
-        <a href="https://messenger.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluent/30/000000/facebook-messenger--v2.png" />
-        </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluent/30/000000/twitter.png" />
-        </a>
+        <!-- 1. Logo dan Brand (Simpel) -->
+        <div class="flex items-center gap-3">
+            <i class="fas fa-bolt text-yellow-400 text-2xl"></i> 
+            <span class="text-xl font-extrabold text-white tracking-wider">MYREADY</span>
+        </div>
+        
+        <!-- 2. Navigasi Minimalis (Di tengah) -->
+        <nav class="flex flex-wrap justify-center gap-x-8 gap-y-2 font-medium text-sm">
+            <a href="#home" class="hover:text-indigo-400 transition">Home</a>
+            <a href="#lomba" class="hover:text-indigo-400 transition">Lomba</a>
+            <a href="#webinar" class="hover:text-indigo-400 transition">Webinar</a>
+            <a href="#contact" class="hover:text-indigo-400 transition">Kontak</a>
+            <a href="#" class="hover:text-indigo-400 transition">Kebijakan Privasi</a>
+        </nav>
+        
+        <!-- 3. Sosial Media (Simpel) -->
+        <div class="flex space-x-5 text-xl">
+            <a href="#" class="hover:text-indigo-400 transition" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="hover:text-indigo-400 transition" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="hover:text-indigo-400 transition" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
     </div>
-    <p class="text-center text-gray-700 font-medium">&copy; 2025 My Ready.</p>
+
+    <!-- Garis Pemisah dan Hak Cipta -->
+    <div class="mt-10 border-t border-gray-800 pt-6 text-center text-xs">
+        © 2025 <span class="font-semibold text-white">MyReady</span>. All rights reserved. Platform Event.
+    </div>
+</div>
+
 </footer>
-@endsection
