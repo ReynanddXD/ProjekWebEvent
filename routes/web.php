@@ -4,18 +4,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LombaController;
 use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\DashboarduserController;
 
-=======
 use Illuminate\Support\Facades\Auth;
->>>>>>> 626752ebc3a1d537c49ee22abb9298d09daef797
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 Route::view('/navbar',  view:'partial.navbar');
 
 Route::view('/footer',  view:'partial.footer');
@@ -28,11 +24,9 @@ Route::get('/dashboarduser', [DashboarduserController::class, 'index'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-=======
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
->>>>>>> 626752ebc3a1d537c49ee22abb9298d09daef797
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,7 +35,7 @@ Route::get('/dashboard', function () {
 // });
 
 // Route::get('/dashboard', function () {
-//     $user = Auth::user();
+//  $user = Auth::user();
 
 //     if ($user->role === 'admin') {
 //         return redirect()->route('admin.dashboard');
@@ -96,9 +90,24 @@ Route::get('/admin/lomba', [LombaController::class, 'create'])->name('lomba.crea
 Route::post('/lomba',[LombaController::class, 'store'])->name('lomba.store');
 
 
-Route::get('lomba/tabel', [LombaController::class, 'index'])->name('lomba.index');
+Route::get('lomba/tabelLomba', [LombaController::class, 'index'])->name('lomba.index');
 
 Route::get('/admin/webinar', [WebinarController::class, 'create'])->name('webinar.create');
 Route::post('/webinar', [WebinarController::class, 'store'])->name('webinar.store');
 
+Route::get('/admin/tabelWebinar', [WebinarController::class, 'index'])->name('webinar.index');
 
+Route::get('/cek-php', function () {
+    phpinfo();
+});
+
+// routes/web.php
+Route::get('/check-limits', function() {
+    return [
+        'post_max_size' => ini_get('post_max_size'),
+        'upload_max_filesize' => ini_get('upload_max_filesize'),
+        'max_file_uploads' => ini_get('max_file_uploads'),
+        'memory_limit' => ini_get('memory_limit'),
+        'max_execution_time' => ini_get('max_execution_time'),
+    ];
+});
