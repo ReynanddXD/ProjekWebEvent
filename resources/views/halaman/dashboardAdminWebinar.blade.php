@@ -2,64 +2,93 @@
 
 @section('title', 'Input Webinar Baru')
 @section('content')
+    <div>
+        <h2>Form Input Webinar</h2>
 
-    <form class="max-w-sm mx-auto">
-        {{-- input acara --}}
-        <div class="mb-5">
-            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Event
-                Webinar</label>
-            <input type="text" id="base-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            {{-- info webinar --}}
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Info Webinar</label>
-            <textarea id="message" rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Masukan Info Webinar.."></textarea>
-            {{-- tanggal Pelaksanaan --}}
-            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tanggal
-                Pelaksanaan</label>
-            <input type="date" id="base-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            {{--Input nama Pemateri --}}
-            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pemateri</label>
-            <input type="text" id="base-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            {{-- Waktu Pelaksanaan --}}
-                 <label for="mulaiWebinar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pelaksanaan</label>
-            <input type="date" id="mulaiWebinar"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        {{-- pesan suskes --}}
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-                     <label for="akhir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pelaksanaan</label>
-            <input type="date" id="akhir"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        {{-- pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            {{-- Kategori online/offline --}}
-            <label for="pilKategori">Pilih Kategori: </label>
-            <select name="kategori" id="pilKategori">
-                <option value="online">Online</option>
-                <option value="offline">Offline</option>
-            </select>
+        <form action="{{ route('webinar.store') }}" method="POST" class="max-w-sm mx-auto" enctype="multipart/form-data">
+            @csrf
+            {{-- input acara --}}
+            <div class="mb-5">
+                <label for="webinar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Event
+                    Webinar</label>
+                <input type="text" id="webinar" name="webinar" value="{{ old('webinar') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-            {{-- tempat Pelaksanaan --}}
+                {{-- info webinar --}}
+                <label for="infoWebinar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Info
+                    Webinar</label>
+                <textarea id="infoWebinar" rows="4" name="deskripsiWebinar"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Masukan Info Webinar..">{{ old('deskripsiWebinar') }}</textarea>
 
-            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tempat</label>
-            <input type="text" id="base-input"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{-- tanggal Pelaksanaan --}}
+                <label for="pelaksanaan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tanggal
+                    Pelaksanaan</label>
+                <input type="date" id="pelaksanaan" name="tanggal"  value="{{ old('tanggal') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-{{-- upload brosur/gambar --}}
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload
-                file</label>
-            <input
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                aria-describedby="user_avatar_help" id="user_avatar" type="file">
-            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Tinggalkan info gambar</div>
-            </button>
-            <button type="button"
-                class="px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Submit
-            </button>
+                {{--Input nama Pemateri --}}
+                <label for="pemateri"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pemateri</label>
+                <input type="text" id="pemateri" name="pemateri" value="{{ old('pemateri') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-    </form>
+                {{-- Waktu Pelaksanaan --}}
+                <label for="mulaiWebinar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Jam
+                    Mulai</label>
+                <input type="time" id="mulaiWebinar" name="mulai" value="{{ old('mulai') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
+                <label for="akhir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Selesai </label>
+                <input type="time" id="akhir" name="selesai" value="{{ old('selesai') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                {{-- Kategori online/offline --}}
+                <label for="pilKategori">Pilih Kategori: </label>
+                <select name="kategoriWebinar" id="pilKategori">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                </select>
+
+                {{-- tempat Pelaksanaan --}}
+
+                <label for="tempat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Tempat</label>
+                <input type="text" id="tempat" name="tempat" value="{{ old('tempat') }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                {{-- upload brosur/gambar --}}
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload
+                    file</label>
+                <input
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    aria-describedby="gambar" id="gambar" type="file" name="gambar">
+                <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Tinggalkan info gambar
+                </div>
+
+                <button type="submit"
+                    class="px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Submit
+                </button>
+
+        </form>
+    </div>
 
 @endsection

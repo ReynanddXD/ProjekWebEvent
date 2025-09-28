@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('pemateri');
             $table->time('mulai');
             $table->time('selesai');
+            $table->string('kategoriWebinar');
+            $table->string('tempat');
+            $table->string('gambar');
 
             $table->timestamps();
         });
