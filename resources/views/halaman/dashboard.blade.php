@@ -1,9 +1,8 @@
 @extends('layouts.adminLayouts')
 
-@section('title', 'Admin Dashboard')
-
 @section('content')
-    <div class="container">
+    <div class="p-5 container">
+        <h1>DASHBOARD</h1>
         <h2 class="mb-4">Selamat Datang di Dashboard Admin! tes</h2>
 
         {{-- <div class="row">
@@ -21,8 +20,8 @@
             </div>
 
 
-<div class="flex flex-row">
-<div class="row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<div class="flex flex-row m-3">
+<div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Daftar data Lomba</h5>
     </a>

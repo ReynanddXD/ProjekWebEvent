@@ -1,9 +1,7 @@
 @extends('layouts.adminLayouts')
-
-@section('title', 'Daftar Tabel')
 @section('content')
 
-<div class="container">
+<div class="p-5 container">
     <h2>Manajemen Data Lomba</h2>
     <a href="{{ route('lomba.create') }}" class="btn btn-primary mb-3">Tambah Lomba Baru</a>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

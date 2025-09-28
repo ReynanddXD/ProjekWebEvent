@@ -1,6 +1,5 @@
 @extends('layouts.adminLayouts')
 
-@section('title', 'Input Lomba Baru')
 @section('content')
 <div>
     {{-- pesan suskes --}}
