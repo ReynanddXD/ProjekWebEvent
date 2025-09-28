@@ -3,8 +3,8 @@
 @section('content')
     <div class=""></div>
     <div class="p-5 md:max-w-screen container border-4 border-white max-w-6xl rounded-xl bg-[#1E3A8A] shadow-sm">
-        <h1 class="text-2xl text-white">DASHBOARD</h1>
-        <h2 class="mb-4">Kejar mimpi setinggi langit!</h2>
+        <h1 class="text-2xl text-white decoration-10  font-bold">DASHBOARD</h1>
+        <h2 class="mb-4  text-white">Kejar mimpi setinggi langit!</h2>
 
         {{-- <div class="row">
             Kartu untuk Manajemen Lomba
@@ -23,7 +23,7 @@
             </div>
 
 
-            <div class="flex items-center justify-center min-h-screen bg-gray-100 ">
+            <div class="flex items-center justify-center bg-gray-100 ">
                 <div class="grid grid-cols-2 gap-2 p-6  md:grid-cols-2">
                 <div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-[#1E3A8A] dark:border-gray-700">
                     <a href="#">
