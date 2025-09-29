@@ -80,12 +80,12 @@
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Masukan Info Webinar.."></textarea>
 {{-- Upload foto brosur --}}
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="brosur">Upload
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"" for="brosur">Upload
                 file</label>
             <input name="gambar"
                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                 aria-describedby="user_avatar_help" id="brosur" type="file">
-            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Tinggalkan info gambar</div>
+            <div class="mt-1 text-sm text-gray-500 text-gray-500" id="user_avatar_help">Tinggalkan info gambar</div>
 
             {{-- Upload Guidebook PDF --}}
 <div class="mt-4">
@@ -96,7 +96,7 @@
            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
            id="panduan" type="file">
     <div class="mt-1 text-sm text-gray-500">
-        Opsional. Ukuran file maksimal 5MB.
+        Opsional. Ukuran file maksimal 20MB.
     </div>
     @error('panduan')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
