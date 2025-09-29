@@ -17,6 +17,7 @@ class Lomba extends Model
         'kategoriPeserta',
         'deskripsi',
         'gambar',
+        'panduan',
     ];
 
 public function userLombas(){

@@ -34,9 +34,13 @@
                         </div>
 
                         <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
-                            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                           @if ($lomba->panduan)
+
+
+                            <a href="{{ asset('storage/'.$lomba->panduan) }}"  target="_blank"download class=" bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
                                 Panduan Lomba
                             </a>
+                            @endif
                             <a href="{{ route ('ulomba.create')}}" class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
                                 Daftar Sekarang
                             </a>

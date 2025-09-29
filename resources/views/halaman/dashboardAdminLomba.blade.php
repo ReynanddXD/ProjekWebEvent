@@ -87,6 +87,21 @@
                 aria-describedby="user_avatar_help" id="brosur" type="file">
             <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Tinggalkan info gambar</div>
 
+            {{-- Upload Guidebook PDF --}}
+<div class="mt-4">
+    <label class="block mb-2 text-sm font-medium text-gray-900" for="panduan">
+        Upload Guidebook (PDF)
+    </label>
+    <input name="panduan"
+           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+           id="panduan" type="file">
+    <div class="mt-1 text-sm text-gray-500">
+        Opsional. Ukuran file maksimal 5MB.
+    </div>
+    @error('panduan')
+        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+    @enderror
+</div>
             <button type="submit"
                 class="px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Submit
