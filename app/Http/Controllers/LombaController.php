@@ -23,6 +23,7 @@ public function store(Request $request){
         'pelaksanaan'=>'required|date',
         'penyelenggara'=>'required|string|max:255',
         'kategoriPeserta'=>'required|string|max:255',
+        'harga'=>'required|numeric|min:0',
         'deskripsi'=>'nullable|string',
         'gambar'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'panduan'=>'nullable|file|mimes:pdf|max:20480',
@@ -46,6 +47,6 @@ public function store(Request $request){
     //  dd($request->file('panduan'));
 
     Lomba::create($validatedData);
-     return redirect()->route('lomba.create')->with('success', 'Data Lomba berhasik disimpan!');
+     return redirect()->route('lomba.create')->with('success', 'Data Lomba berhasil disimpan!');
 }
 }

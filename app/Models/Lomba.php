@@ -15,6 +15,7 @@ class Lomba extends Model
         'pelaksanaan',
         'penyelenggara',
         'kategoriPeserta',
+        'harga',
         'deskripsi',
         'gambar',
         'panduan',

@@ -74,6 +74,16 @@
 
             </select>
 
+            {{-- harga pendaftaran --}}
+            <div class="mt-4">
+              <label for="harga" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Biaya</label>
+            <input type="number" id="harga" name="harga" value="{{ old('harga', 0) }}" min="0"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <p class="mt-1 text-xs text-gray-500">Isi 0 jika lomba ini gratis.</p>
+ @error('harga')
+        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+    @enderror
+        </div>
                 {{-- Deskripsi lomba --}}
             <label for="descLomba" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Info Lomba</label>
             <textarea name="deskripsi" id="descLomba" rows="4" {{ old('deskripsi') }}"
