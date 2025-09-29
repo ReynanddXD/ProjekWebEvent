@@ -53,33 +53,36 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
 
                    {{-- email --}}
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">email
-                Email</label>
-            <input type="email" id="email" name="pelaksanaan" value="{{ old('email') }}"
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Email</label>
+            <input type="email" id="email" name="email" value="{{ old('email') }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 {{-- no wa --}}
 
-  <label for="noHP" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">No. Whatsapp</label>
-            <input type="text" id="noHP" name="noHP" value="{{ old('noHP') }}"
+  <label for="noHp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">No. Whatsapp</label>
+            <input type="text" id="noHp" name="noHp" value="{{ old('noHp') }}"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                {{-- instansi --}}
+                 <label for="instansi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Instansi</label>
+            <input type="text" id="noHp" name="instansi" value="{{ old('instansi') }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 {{-- kategori target lomba --}}
    {{-- Kategori online/offline --}}
-            {{-- <label for="lomba_id">Pilih Kategori: </label>
-            <select name="lomba_id" id="lomba_id">
-                <option value="" disabled selected>Pilih salh satu lomba</option>
-               @foreach ($kategoriLomba as $uLomba)
+          <label for="lomba_id">Pilih Lomba:</label>
+<select name="lomba_id" id="lomba_id" required>
+    <option value="" disabled selected>Pilih salah satu lomba</option>
+    @foreach ($kategoriLomba as $uLomba)
         <option value="{{ $uLomba->id }}" {{ old('lomba_id') == $uLomba->id ? 'selected' : '' }}>
             {{ $uLomba->lomba }}
         </option>
+    @endforeach
+</select>
+@error('lomba_id')
+    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+@enderror
 
-                @endforeach
-
-              @error('lomba_id')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-            </select> --}}
 
                 {{-- Deskripsi lomba --}}
             <label for="pekerjaan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pekerjaan</label>

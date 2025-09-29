@@ -18,4 +18,9 @@ class Lomba extends Model
         'deskripsi',
         'gambar',
     ];
+
+public function userLombas(){
+    return $this->hasMany(UserLomba::class, 'lomba_id');
+}
+
 }

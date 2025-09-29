@@ -8,15 +8,24 @@ use App\Models\userLomba;
 
 class LombaUser extends Controller
 {
+  public function showKategori(){
+    $kategoriLomba = Lomba::all(); // ambil semua data dari tabel lombas
+    return view('form.formUserLomba', compact('kategoriLomba'));
+}
+
     public function index(){
 
     $userLomba = UserLomba::latest()->get();
     return view('form.formUserLomba', compact('userLomba'));
 }
 
+
     public function create(){
 
-          return view('form.formUserLomba');
+
+    $kategoriLomba = Lomba::all(); // ambil semua data lomba
+    return view('form.formUserLomba', compact('kategoriLomba'));
+
 
     }
 
@@ -26,10 +35,12 @@ class LombaUser extends Controller
            'email'=>'required|email',
        'noHp'=>'required|string',
         'instansi'=>'required|string|max:255',
+        'lomba_id' => 'required|exists:lombas,id',
        'pekerjaan'=>'required|string|max:255',
+
        ]);
 
-    LombaUser::create($validatedData);
+   userLomba::create($validatedData);
      return redirect()->route('ulomba.create')->with('success', 'Data Lomba berhasil disimpan!');
        }
 

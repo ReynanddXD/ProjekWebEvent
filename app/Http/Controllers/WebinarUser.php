@@ -21,7 +21,7 @@ class WebinarUser extends Controller
        'pekerjaan'=>'required|string|max:255',
        ]);
 
-    WebinarUser::create($validatedData);
+    userWebinar::create($validatedData);
      return redirect()->route('uwebinar.create')->with('success', 'Data Webinar berhasil disimpan!');
        }
 }
