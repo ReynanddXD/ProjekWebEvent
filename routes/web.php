@@ -78,12 +78,12 @@ Route::get('/dashboard/admin/webinar',function(){
 
 require __DIR__.'/auth.php';
 
-Route::get('admin', function(){
-    return view('layouts.adminLayouts');
-});
+// Route::get('admin', function(){
+//     return view('layouts.adminLayouts');
+// });
 
 
-Route::get('/admin/dashboard', function(){
+Route::get('/admin', function(){
     return view('halaman.dashboard');
 })->name('halaman.dashboard');
 
@@ -135,4 +135,9 @@ Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->name('d
 Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
 Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');
 Route::get('/user/lomba/tampil', [LombaUser::class, 'index'])->name('ulomba.index');
+
+Route::get('/user/webinar', [LombaUser::class, 'create'])->name('uwebinar.create');
+Route::post('/user/webinar/daftar', [LombaUser::class, 'store'])->name('uwebinar.store');
+Route::get('/user/webinar/tampil', [LombaUser::class, 'index'])->name('uwebinar.index');
+
 

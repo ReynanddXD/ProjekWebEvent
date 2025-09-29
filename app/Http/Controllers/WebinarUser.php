@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\userWebinar;
+use App\Models\Webinar;
 use Illuminate\Http\Request;
-use App\Models\Lomba;
-use App\Models\userLomba;
 
-class LombaUser extends Controller
+class WebinarUser extends Controller
 {
+
     public function index(){
-      $kategoriLomba = Lomba::select('id','lomba')->get();
-    $userLomba = UserLomba::latest()->get();
-    return view('form.formUserLomba', compact('userLomba'));
+    return view('form.formUserLomba');
 }
 
     public function create(){
-          $kategoriLomba = Lomba::select('id','lomba')->get();
 
-          return view('form.formUserLomba', compact('kategoriLomba'));
+  $userLomba = userWebinar::latest()->get();
+          return view('form.formUserLomba',compact('userWebinar'));
 
     }
 
@@ -31,9 +30,7 @@ class LombaUser extends Controller
        'pekerjaan'=>'required|string|max:255',
        ]);
 
-    LombaUser::create($validatedData);
-     return redirect()->route('ulomba.create')->with('success', 'Data Lomba berhasil disimpan!');
+    WebinarUser::create($validatedData);
+     return redirect()->route('uwebinar.create')->with('success', 'Data Webinar berhasil disimpan!');
        }
-
-
 }
