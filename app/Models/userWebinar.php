@@ -13,7 +13,6 @@ class userWebinar extends Model
            'email',
        'noHp',
         'instansi',
-        'lomba_id',
        'pekerjaan',
   ];
 }

@@ -35,7 +35,7 @@
                 </div>
 
 <div class="inline-flex">
-    <form action="{{ route('ulomba.store') }}" method="POST" class="p-3 max-w-lg mx-auto " enctype="multipart/form-data">
+    <form action="{{ route('uwebinar.store') }}" method="POST" class="p-3 max-w-lg mx-auto " enctype="multipart/form-data">
   @csrf
         <div class="mb-1">
             {{-- input nama lomba --}}
@@ -61,7 +61,13 @@
                 {{-- no wa --}}
 
   <label for="noHP" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">No. Whatsapp</label>
-            <input type="text" id="noHP" name="noHP" value="{{ old('noHP') }}"
+            <input type="text" id="noHP" name="noHp" value="{{ old('noHP') }}"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                   {{-- no wa --}}
+
+  <label for="instansi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Instansi</label>
+            <input type="text" id="instansi" name="instansi" value="{{ old('instansi') }}"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 {{-- kategori target lomba --}}

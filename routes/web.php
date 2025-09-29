@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LombaUser;
+use App\Http\Controllers\WebinarUser;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -136,8 +137,8 @@ Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
 Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');
 Route::get('/user/lomba/tampil', [LombaUser::class, 'index'])->name('ulomba.index');
 
-Route::get('/user/webinar', [LombaUser::class, 'create'])->name('uwebinar.create');
-Route::post('/user/webinar/daftar', [LombaUser::class, 'store'])->name('uwebinar.store');
-Route::get('/user/webinar/tampil', [LombaUser::class, 'index'])->name('uwebinar.index');
+Route::get('/user/webinar', [WebinarUser::class, 'create'])->name('uwebinar.create');
+Route::post('/user/webinar/daftar', [WebinarUser::class, 'store'])->name('uwebinar.store');
+
 
 
