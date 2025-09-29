@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MYREADY | Lomba & Event</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Custom color for Dark Indigo (#1E3A8A) */
-        .bg-dark-indigo { background-color: #1E3A8A; }
-        .text-dark-indigo { color: #1E3A8A; }
+        .bg-dark-indigo { background-color: #1E3A8A !important; }
+        .text-dark-indigo { color: #1E3A8A !important; }
         .border-dark-indigo { border-color: #1E3A8A; }
         /* Custom color for Amber Accent (#FACC15) */
         .bg-amber-400-custom { background-color: #FACC15; }
@@ -25,7 +26,7 @@
             background-position: center;
         }
     </style>
-    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
     
