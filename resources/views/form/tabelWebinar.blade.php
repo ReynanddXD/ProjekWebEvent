@@ -38,9 +38,9 @@
                  <th scope="col" class="px-6 py-3">
                     Gambar
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {{-- <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
-                </th>
+                </th> --}}
             </tr>
         </thead>
         <tbody>
@@ -79,9 +79,9 @@
                  <td class="px-6 py-4">
                     <img src="{{ asset('storage/' . $item->gambar) }}" alt="Poster Lomba" width="100">
                 </td>
-                <td class="px-6 py-4 text-right">
+                {{-- <td class="px-6 py-4 text-right">
                     <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
+                </td> --}}
             </tr>
             @empty
   {{-- Pesan jika tidak ada data sama sekali --}}
