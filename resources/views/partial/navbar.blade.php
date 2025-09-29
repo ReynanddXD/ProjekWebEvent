@@ -52,7 +52,7 @@
                     @auth
                         <div class="relative inline-block text-left group">
                             {{-- Tombol Dashboard utama dengan nama user --}}
-                            <a href="{{ url('/dashboard') }}" 
+                            <a href="{{ url('/dashboardUser') }}" 
                             class="bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:bg-blue-800 rounded-full px-5 py-2 text-sm font-medium transition-colors shadow-md">
                             Dashboard ({{ ucfirst(Auth::user()->name)  }})
                             </a>
