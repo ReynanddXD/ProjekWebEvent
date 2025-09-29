@@ -14,7 +14,7 @@ class LombaUser extends Controller
 
     public function create(){
           $kategoriLomba = Lomba::select('id','lomba')->get();
-         dd($kategoriLomba);
+
           return view('form.formUserLomba', compact('kategoriLomba'));
 
     }

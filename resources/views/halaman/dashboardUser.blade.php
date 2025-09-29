@@ -37,7 +37,7 @@
                             <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
                                 Panduan Lomba
                             </a>
-                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                            <a href="{{ route ('ulomba.create')}}" class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
                                 Daftar Sekarang
                             </a>
                         </div>
@@ -104,7 +104,7 @@
                     const href = this.getAttribute('href');
                     if (href && href.startsWith('#') && href.length > 1) {
                         e.preventDefault();
-                        
+
                         const targetId = href.substring(1);
                         const targetElement = document.getElementById(targetId);
 
