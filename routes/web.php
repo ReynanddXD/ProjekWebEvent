@@ -6,6 +6,7 @@ use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LombaUser;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -129,4 +130,7 @@ Route::get('/dashboardUser', function () {
     return view('halaman.dashboardUser');
 })->name('dashboardUser');
 
+Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
+Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');
+Route::get('/user/lomba/tampil', [LombaUser::class, 'index'])->name('ulomba.index');
 
