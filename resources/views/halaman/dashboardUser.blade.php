@@ -2,130 +2,120 @@
 @section('title', 'Dashboard User')
 @section('content')
 
-    <div class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="space-y-12 bg-gray-50">
 
-        {{-- loop card lomba --}}
-           @foreach ($semuaLomba as $lomba )
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
+    {{-- ===================== Section Lomba ===================== --}}
+    <section id="lomba"class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-gray-800">
+                <span class="relative inline-block">
+                    <span class="text-indigo-600">Lomba</span> Terbaru & Populer
+                    <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1.5 bg-amber-500 rounded-full"></span>
+                </span>
+            </h2>
 
-              <a href="#">
-                <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $lomba->gambar) }}" alt="Poster Lomba Bisnis">
-            </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                @forelse ($semuaLomba as $lomba)
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col transition duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+                        <a href="#">
+                            <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $lomba->gambar) }}" alt="Poster Lomba">
+                        </a>
 
-            <div class="p-6 flex-grow">
-                <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $lomba->lomba }}</h3>
-                <ul class="text-gray-700 text-base list-disc list-inside space-y-1">
-                    <li>Peserta: {{ $lomba->kategoriPeserta }}</li>
-                    <li>Biaya: Mulai dari Rp 0</li>
-                    <li>Lokasi: Online & Offline (Nasional)</li>
-                    <li>Penyelenggara: {{ $lomba->penyelenggara }}</li>
-                    <li>Tanggal: {{ $lomba->pelaksanaan }}</li>
-                    <li>Deskripsi: {{ Str::limit($lomba->deskripsi, 100) }}</li>
-                </ul>
-            </div>
+                        <div class="p-6 flex-grow">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-800">{{ $lomba->lomba }}</h3>
+                            <ul class="text-gray-700 text-sm list-disc list-inside space-y-1">
+                                <li><span class="font-semibold">Peserta:</span> {{ $lomba->kategoriPeserta }}</li>
+                                <li><span class="font-semibold">Biaya:</span> Mulai dari Rp 0</li>
+                                <li><span class="font-semibold">Lokasi:</span> Online</li>
+                                <li><span class="font-semibold">Penyelenggara:</span> {{ $lomba->penyelenggara }}</li>
+                                <li><span class="font-semibold">Tanggal:</span> {{ \Carbon\Carbon::parse($lomba->pelaksanaan)->format('d F Y') }}</li>
+                                <li><span class="font-semibold">Deskripsi:</span> {{ Str::limit($lomba->deskripsi, 100) }}</li>
+                            </ul>
+                        </div>
 
-            <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Panduan Lomba
-                </button>
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Daftar Sekarang
-                </button>
-            </div>
-          @endforeach
-
-        </div>
-
-
-
-        {{-- <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
-            <a href="#">
-                <img class="w-full h-48 object-cover" src="https://www.infolomba.id/images/event/poster/matrix-ui-2025-80.jpeg" alt="Poster Lomba Coding">
-            </a>
-
-            <div class="p-6 flex-grow">
-                <h3 class="font-bold text-xl mb-2 text-gray-800">Matrix UI 2025</h3>
-                <p class="text-gray-700 text-base">
-                    - SMA / Sederajat, Mahasiswa <br>
-                    - Start from Rp 150.000 (22 - 28 Sep 2025) <br>
-                    - Online <br>
-                    - 22 - 28 Sep 2025 <br>
-                </p>
-            </div>
-
-            <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Panduan Lomba
-                </button>
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Daftar Sekarang
-                </button>
-            </div>
-        </div> --}}
-
-        {{-- <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
-            <a href="#">
-                <img class="w-full h-48 object-cover" src="https://event.ruangmahasiswa.com/images/event/cc0c8cf824ff8d33c3e68ce1b5520450.jpg" alt="Poster Lomba Coding">
-            </a>
-
-            <div class="p-6 flex-grow">
-                <h3 class="font-bold text-xl mb-2 text-gray-800">DIGITAL BUSINESS ART AND SPORT INTERNAL COMPETITION ( D'BASIC )</h3>
-                <p class="text-gray-700 text-base">
-                    - 04 Okt 2025 - 21 Okt 2025 <br>
-                    - 08:00 WIB - 04:00 WIB <br>
-                    - Online <br>
-                    - Dilihat: 91 orang <br>
-                    - Penyelenggara: Himpunan Digital Business Student Society (DIGCITY)
-                </p>
-            </div>
-
-            <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Lihat Event
-                </button>
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Daftar Sekarang
-                </button>
-            </div>
-        </div> --}}
-
-          {{-- Loop card Webinar --}}
-        <div class="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transform hover:scale-105 transition-transform duration-300">
-           @foreach ($semuaWebinar as $webinar)
-
-
-            <a href="#">
-                <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $webinar->gambar) }}" alt="Poster Lomba Coding">
-            </a>
-
-            <div class="p-6 flex-grow">
-                <h3 class="font-bold text-xl mb-2 text-gray-800">{{ $webinar->webinar }}</h3>
-                <p class="text-gray-700 text-base">
-                    Tanggal: {{ $webinar->tanggal }} <br>
-                    Pemateri: {{ $webinar->pemateri }}<br>
-                    Mulai: {{ $webinar->mulai }} <br>
-                    Selesai: {{ $webinar->selesai }} <br>
-                    Kategori: {{ $webinar->kategoriWebinar }}
-                </p>
-                <ul>
-                    <li>
-                         <li>Deskripsi: {{ Str::limit($webinar->deskripsi, 100) }}</li>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Lihat Event
-                </button>
-                <button class="bg-[oklch(63.7%_0.237_25.331)] hover:bg-[oklch(70%_0.237_25.331)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[oklch(63.7%_0.237_25.331)] active:bg-[oklch(58%_0.237_25.331)] text-white rounded-lg px-5 py-2 text-sm font-medium transition-colors">
-                    Daftar Sekarang
-                </button>
+                        <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
+                            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                                Panduan Lomba
+                            </a>
+                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                                Daftar Sekarang
+                            </a>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-gray-600 text-center col-span-full">Belum ada lomba tersedia saat ini.</p>
+                @endforelse
             </div>
         </div>
-         @endforeach
+    </section>
 
+    {{-- ===================== Section Webinar ===================== --}}
+    <section id="webinar" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-gray-800">
+                <span class="relative inline-block">
+                    <span class="text-indigo-600">Webinar</span> & Workshop Eksklusif
+                    <span class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1.5 bg-amber-500 rounded-full"></span>
+                </span>
+            </h2>
 
-    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                @forelse ($semuaWebinar as $webinar)
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col transition duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+                        <a href="#">
+                            <img class="w-full h-48 object-cover" src="{{ asset('storage/' . $webinar->gambar) }}" alt="Poster Webinar">
+                        </a>
 
+                        <div class="p-6 flex-grow">
+                            <h3 class="font-bold text-xl mb-2 text-indigo-800">{{ $webinar->webinar }}</h3>
+                            <ul class="text-gray-700 text-sm list-disc list-inside space-y-1">
+                                <li><span class="font-semibold">Tanggal:</span> {{ \Carbon\Carbon::parse($webinar->tanggal)->format('d F Y') }}</li>
+                                <li><span class="font-semibold">Pemateri:</span> {{ $webinar->pemateri }}</li>
+                                <li><span class="font-semibold">Waktu:</span> {{ \Carbon\Carbon::parse($webinar->mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($webinar->selesai)->format('H:i') }} WIB</li>
+                                <li><span class="font-semibold">Kategori:</span> {{ $webinar->kategoriWebinar }}</li>
+                                <li><span class="font-semibold">Deskripsi:</span> {{ Str::limit($webinar->deskripsiWebinar, 100) }}</li>
+                            </ul>
+                        </div>
+
+                        <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
+                            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                                Lihat Event
+                            </a>
+                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                                Daftar Sekarang
+                            </a>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-gray-600 text-center col-span-full">Belum ada webinar tersedia saat ini.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+</div>
+<script>
+// JAVASCRIPT UNTUK SMOOTH SCROLL
+        document.addEventListener('DOMContentLoaded', () => {
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+            for (const anchorLink of anchorLinks) {
+                anchorLink.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#') && href.length > 1) {
+                        e.preventDefault();
+                        
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

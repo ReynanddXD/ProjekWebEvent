@@ -11,7 +11,7 @@ class Lomba extends Model
 
     protected $table = 'lombas'; // ganti sesuai nama tabelmu
     protected $fillable =[
-       'lomba',
+        'lomba',
         'pelaksanaan',
         'penyelenggara',
         'kategoriPeserta',

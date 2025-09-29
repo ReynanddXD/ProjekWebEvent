@@ -43,23 +43,23 @@ Route::get('/dashboard-user',  [DashboarduserController::class, 'index']);
 //     return redirect()->route('landing.page');
 // })->middleware('auth');
 
-Route::get('/dashboard', function(){
-return view('halaman.dashboard');
-});
+// Route::get('/dashboard', function(){
+// return view('halaman.dashboard');
+// });
 
-Route::get('/asd', function () {
+Route::get('/dashboard', function () {
     $user = Auth::user();
 
     if ($user->role === 'admin') {
         return redirect()->route('admin.dashboard');
     }
 
-    return redirect()->route('landing.page');
+    return redirect()->route('landingPage');
 })->middleware('auth');
 
 Route::get('/landing-page',function(){
     return view('halaman.landingPage');
-})->name('landing.page');
+})->name('landingPage');
 
 Route::get('/admin-dashboard', function () {
     return view('layouts.adminLayouts');
@@ -111,7 +111,6 @@ Route::get('/cek-php', function () {
     phpinfo();
 });
 
-// routes/web.php
 Route::get('/check-limits', function() {
     return [
         'post_max_size' => ini_get('post_max_size'),
@@ -128,5 +127,8 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
 Route::get('/dashboardUser', function () {
     return view('halaman.dashboardUser');
 })->name('dashboardUser');
+
+// agar dahsboard user bisa narik data lomba dan webinar
+Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->name('dashboardUser');
 
 
