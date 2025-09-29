@@ -51,7 +51,7 @@ Route::get('/dashboard', function () {
     $user = Auth::user();
 
     if ($user->role === 'admin') {
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('halaman.dashboard');
     }
 
     return redirect()->route('landingPage');
@@ -61,9 +61,9 @@ Route::get('/landing-page',function(){
     return view('halaman.landingPage');
 })->name('landingPage');
 
-Route::get('/admin-dashboard', function () {
-    return view('layouts.adminLayouts');
-})->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('admin.dashboard');
+Route::get('/admin/dashboard', function () {
+    return view('halaman.dashboard');
+})->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('halaman.dashboard');
 
 // Route::get('/dashboard/admin/webinar',function(){
 //     return view('halaman.dashboardAdminWebinar');
