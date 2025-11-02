@@ -24,7 +24,7 @@
                 <a href="{{ route('halaman.dashboard') }}"
                     class="flex items-center p-2 rounded-lg hover:bg-indigo-700 transition-colors group">
 
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3 text-gray-600 group-hover:text-white ">Dashboard</span>
                 </a>
             </li>
          <div class="px-2 pt-4 pb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
@@ -72,7 +72,7 @@
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
-                    class="flex w-full items-center p-2 rounded-lg hover:bg-red-600 transition-colors text-white">
+                    class="flex w-full items-center p-2 rounded-lg hover:bg-red-600 transition-colors text-gray-500">
                     <svg class="w-5 h-5 text-gray-300 transition duration-75 group-hover:text-white"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"

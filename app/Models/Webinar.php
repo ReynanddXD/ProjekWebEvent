@@ -20,4 +20,9 @@ class Webinar extends Model
      'tempat',
     'gambar',
     ];
+
+    protected $casts = [
+        'mulai' => 'datetime:H:i',
+        'selesai' => 'datetime:H:i',
+    ];
 }

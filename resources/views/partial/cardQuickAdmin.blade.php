@@ -50,7 +50,7 @@
 
 <div class="body">
 
-<a class="card human-resources" href="#">
+<a class="card human-resources" href="{{ route('pengumuman.create') }}">
      <div class="overlay"></div>
   <div class="circle">
 
@@ -74,7 +74,7 @@
 
 <div class="body">
 
-<a class="card human-resources" href="#">
+<a class="card human-resources" href="{{ route('admin.users.create') }}">
      <div class="overlay"></div>
   <div class="circle">
 

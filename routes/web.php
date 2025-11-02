@@ -49,11 +49,17 @@ Route::middleware(['auth', 'verified', 'RoleCheck:admin'])->group(function () {
     Route::post('/lomba', [LombaController::class, 'store'])->name('lomba.store');
     Route::get('/lomba/tabelLomba', [LombaController::class, 'index'])->name('lomba.index');
     Route::get('/lomba/tabel', [LombaController::class, 'index'])->name('lomba.index');
+Route::delete('/lomba/{lomba}',[LombaController::class, 'destroy'])->name('lomba.destroy');
+Route::get('/lomba/{lomba}/edit',[LombaController::class, 'edit'])->name('lomba.edit');
+Route::put('/lomba/{lomba}',[LombaController::class, 'update'])->name('lomba.update');
 
     // Webinar (admin only)
     Route::get('/admin/webinar', [WebinarController::class, 'create'])->name('webinar.create');
     Route::post('/webinar', [WebinarController::class, 'store'])->name('webinar.store');
     Route::get('/admin/tabelWebinar', [WebinarController::class, 'index'])->name('webinar.index');
+    Route::get('/webinar/{webinar}/edit', [WebinarController::class, 'edit'])->name('webinar.edit');
+    Route::put('/webinar/{webinar}', [WebinarController::class, 'update'])->name('webinar.update');
+    Route::delete('/webinar/{webinar}', [WebinarController::class, 'destroy'])->name('webinar.destroy');
 });
 
 Route::get('/cek-php', function () {
@@ -116,6 +122,7 @@ Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->na
 
 // Di dalam grup middleware admin Anda
 // Route::resource('/admin/pengumuman', PengumumanController::class);
+
 });
 
 //rute pengumuman

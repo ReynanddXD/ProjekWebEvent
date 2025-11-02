@@ -1,79 +1,121 @@
 @extends('layouts.adminLayouts')
 @section('content')
 
-<div class="p-5 container">
+{{--
+    DIRAPIKAN:
+    Mengganti 'p-5 container' (campuran Bootstrap) dengan 'px-6 py-4'
+    agar konsisten dengan halaman admin lainnya.
+--}}
+<div class="px-6 py-4">
     <h2 class="text-2xl font-bold">Manajemen Data Lomba</h2>
+    <p class="mb-6 text-gray-600">Daftar semua lomba yang telah di input.</p>
 
-    <a href="{{ route('lomba.create') }}" class="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#FACC15] rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#d3ac12] dark:hover:bg-[#ee0c0c] dark:focus:ring-blue-800">Tambah Lomba Baru</a>
-<div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                 <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Nama Lomba
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Pelaksanaan
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Penyelenggara
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Kategori Peserta
-                </th>
-                  <th scope="col" class="px-6 py-3">
-                    Deskripsi
-                </th>
-                  <th scope="col" class="px-6 py-3">
-                    Gambar
-                </th>
-                {{-- <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th> --}}
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($semuaLomba as $item)
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   {{$loop->iteration}}
-                </th>
-                <td class="px-6 py-4">
-                    {{ $item->lomba }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $item->pelaksanaan }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $item->penyelenggara }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ $item->kategoriPeserta }}
-                </td>
-                 <td class="px-6 py-4">
-                    {{ $item->deskripsi }}
-                </td>
-                 <td class="px-6 py-4">
-                    <img src="{{ asset('storage/' . $item->gambar) }}" alt="Poster Lomba" width="100">
-                </td>
-                {{-- <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td> --}}
-            </tr>
-            @empty
-  {{-- Pesan jika tidak ada data sama sekali --}}
+    {{--
+        DIRAPIKAN:
+        Mengganti tombol kuning 'bg-[#FACC15]' dengan tombol biru standar
+        agar konsisten dengan tombol "Tambah" di halaman lain.
+    --}}
+    <a href="{{ route('lomba.create') }}"
+       class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
+        <i class="fas fa-plus mr-2"></i> Tambah Lomba Baru
+    </a>
+
+    {{-- Wrapper tabel sudah bagus, tidak diubah --}}
+    <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <td colspan="6" class="text-center">Belum ada data lomba.</td>
+                    <th scope="col" class="px-6 py-3">ID</th>
+                    <th scope="col" class="px-6 py-3">Nama Lomba</th>
+                    <th scope="col" class="px-6 py-3">Pelaksanaan</th>
+                    <th scope="col" class="px-6 py-3">Penyelenggara</th>
+                    <th scope="col" class="px-6 py-3">Kategori Peserta</th>
+                    <th scope="col" class="px-6 py-3">Deskripsi</th>
+                    <th scope="col" class="px-6 py-3">Gambar</th>
+                    {{--
+                        DITAMBAHKAN:
+                        Kolom "Aksi" untuk Edit/Delete, sangat penting
+                        untuk halaman manajemen.
+                    --}}
+                    <th scope="col" class="px-6 py-3">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($semuaLomba as $item)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{$loop->iteration}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ $item->lomba }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $item->pelaksanaan }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $item->penyelenggara }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $item->kategoriPeserta }}
+                    </td>
+                    {{--
+                        DIRAPIKAN:
+                        Menambahkan 'max-w-xs' dan 'truncate' agar deskripsi panjang
+                        tidak merusak layout tabel.
+                    --}}
+                    <td class="px-6 py-4 max-w-xs truncate">
+                        {{ $item->deskripsi }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{--
+                            DIRAPIKAN:
+                            Mengganti 'width="100"' dengan kelas Tailwind 'w-24'
+                            dan 'h-16' agar ukuran gambar seragam dan rapi.
+                        --}}
+                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="Poster Lomba"
+                             class="w-24 h-16 object-cover rounded-md">
+                    </td>
+                    {{--
+                        DITAMBAHKAN:
+                        Tombol Aksi (Edit & Delete) dengan styling
+                        yang konsisten dari file 'pengumuman' sebelumnya.
+                    --}}
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        @foreach ($semuaLomba as $lomba )
+                        <div class="flex items-center gap-2">
+                            {{-- Ganti '#' dengan route edit yang benar --}}
+                            <a href="{{ route('lomba.edit', $lomba->id) }}" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">
+                                <i class="fas fa-edit"></i>
+                            </a>
+
+
+
+                            {{-- Ganti '#' dengan route destroy yang benar --}}
+                            <form action="{{ route('lomba.destroy', $lomba->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                {{--
+                    DIPERBAIKI:
+                    'colspan="6"' salah. Seharusnya 8 agar sesuai
+                    jumlah <th> di <thead> (7 + 1 Aksi).
+                --}}
+                <tr>
+                    <td colspan="8" class="px-6 py-4 text-center text-gray-500">
+                        Belum ada data lomba.
+                    </td>
                 </tr>
                 @endforelse
-
-
-        </tbody>
-    </table>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
-</div>
-
 @endsection
