@@ -74,17 +74,19 @@ Route::get('/dashboardUser', function () {
     return view('halaman.dashboardUser');
 })->middleware(['auth', 'verified', 'RoleCheck:user, admin'])->name('dashboardUser');
 
-Route::middleware(['auth', 'verified', 'RoleCheck:user'])->group(function () {
+Route::middleware(['auth', 'verified', 'RoleCheck:user, admin'])->group(function () {
+    // agar dahsboard user bisa narik data lomba dan webinar
+    Route::get('/dashboardUser', [DashboarduserController::class, 'index'])->name('dashboardUser');
+    Route::get('/dashboardUser/pengumuman', [DashboarduserController::class, 'pengumuman'])->name('dashboardUser.pengumuman');
+    Route::get('/dashboardUser/lomba', [DashboarduserController::class, 'lomba'])->name('dashboardUser.lomba');
+    Route::get('/dashboardUser/seminar', [DashboarduserController::class, 'seminar'])->name('dashboardUser.seminar');
 
-// agar dahsboard user bisa narik data lomba dan webinar
-Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->name('dashboardUser');
-
-// route lomba dan webinar user
-Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
-Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');
-Route::get('/user/lomba/tampil', [LombaUser::class, 'index'])->name('ulomba.index');
-Route::get('/user/webinar', [WebinarUser::class, 'create'])->name('uwebinar.create');
-Route::post('/user/webinar/daftar', [WebinarUser::class, 'store'])->name('uwebinar.store');
+    // route lomba dan webinar user
+    Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
+    Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');
+    Route::get('/user/lomba/tampil', [LombaUser::class, 'index'])->name('ulomba.index');
+    Route::get('/user/webinar', [WebinarUser::class, 'create'])->name('uwebinar.create');
+    Route::post('/user/webinar/daftar', [WebinarUser::class, 'store'])->name('uwebinar.store');
 });
 
 
