@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LombaController;
 use App\Http\Controllers\WebinarController;
@@ -8,7 +9,9 @@ use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LombaUser;
 use App\Http\Controllers\WebinarUser;
+use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('halaman.landingPage');
@@ -89,7 +92,20 @@ Route::middleware(['auth', 'verified', 'RoleCheck:user, admin'])->group(function
     Route::post('/user/webinar/daftar', [WebinarUser::class, 'store'])->name('uwebinar.store');
 });
 
+//rute admin baru
+Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
+//grup buat rute admin
+// Terapkan middleware 'auth' DAN 'admin'
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
+    Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
+    // Route Manajemen Admin
+    Route::get('/users', [UserManagementController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [UserManagementController::class, 'create'])->name('admin.users.create');
+    Route::post('/users', [UserManagementController::class, 'store'])->name('admin.users.store');
+
+    // ... (Route Lomba, Webinar, dll. juga harus di dalam sini) ...
+});
 

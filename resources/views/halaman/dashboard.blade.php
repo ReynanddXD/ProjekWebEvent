@@ -20,10 +20,14 @@
                     </div>
                     {{--
                 </div> --}}
+
             </div>
 
+<div class="flex flex-row">
+    @include('partial.card-statistik')
+</div>
+            {{-- <div class="flex items-center justify-center bg-gray-100 ">
 
-            <div class="flex items-center justify-center bg-gray-100 ">
                 <div class="grid grid-cols-2 gap-2 p-6  md:grid-cols-2">
                 <div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-[#1E3A8A] dark:border-gray-700">
                     <a href="#">
@@ -101,8 +105,45 @@
                 </a>
             </div>
             </div>
-        </div>
 
+        </div> --}}
+   <div>
+        <h3>Akses Cepat</h3>
+<div class="list-group flex flex-row">
+    @include('partial.cardQuickAdmin')
+</div>
+{{-- history aktivitas --}}
+<div class="col-lg-12"> <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Aktivitas Terbaru</h6>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+
+                @forelse($aktivitasTerbaru as $aktivitas)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            @if($aktivitas->tipe == 'Lomba')
+                                <span class="badge badge-primary">Lomba</span>
+                            @else
+                                <span class="badge badge-success">Webinar</span>
+                            @endif
+
+                            <a href="{{ $aktivitas->url }}" class="ml-2">
+                                {{ $aktivitas->judul }}
+                            </a>
+                        </div>
+                        <small>{{ $aktivitas->created_at->diffForHumans() }}</small>
+                    </li>
+                @empty
+                    <li class="list-group-item">Belum ada aktivitas.</li>
+                @endforelse
+
+            </ul>
+        </div>
+    </div>
+</div>
+       </div>
         </div>
 
     </div>
