@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Lomba;
+
 
 class User extends Authenticatable
 {
@@ -45,4 +47,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function lombaDiikuti()
+    {
+        // Asumsi nama tabel pivot adalah 'lomba_user'
+        return $this->belongsToMany(Lomba::class, 'lomba_user', 'user_id', 'lomba_id')
+                    ->withTimestamps(); // Jika Anda memiliki kolom created_at/updated_at di pivot
+    }
+
+
 }
