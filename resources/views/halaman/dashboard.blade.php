@@ -2,9 +2,9 @@
 
 @section('content')
     <div class=""></div>
-    <div class="p-5 md:max-w-screen container border-4 border-white max-w-6xl rounded-xl bg-[#1E3A8A] shadow-sm">
-        <h1 class="text-2xl text-white decoration-10  font-bold">DASHBOARD</h1>
-        <h2 class="mb-4  text-white">Kejar mimpi setinggi langit!</h2>
+    <div class="p-5 top-16 md:max-w-screen container border-4 border-white max-w-6xl rounded-xl shadow-sm">
+        {{-- <h1 class="text-2xl text-white decoration-10  font-bold">DASHBOARD</h1>
+        <h2 class="mb-4  text-white">Kejar mimpi setinggi langit!</h2> --}}
 
         {{-- <div class="row">
             Kartu untuk Manajemen Lomba
@@ -23,7 +23,7 @@
 
             </div>
 
-<div class="flex flex-row">
+<div class="top-5 flex flex-row">
     @include('partial.card-statistik')
 </div>
             {{-- <div class="flex items-center justify-center bg-gray-100 ">
@@ -108,44 +108,106 @@
 
         </div> --}}
    <div>
-        <h3>Akses Cepat</h3>
-<div class="list-group flex flex-row">
-    @include('partial.cardQuickAdmin')
-</div>
-{{-- history aktivitas --}}
-<div class="col-lg-12"> <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Aktivitas Terbaru</h6>
-        </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
+    {{--
+        Styling heading standar Tailwind.
+        'mb-4' (1rem) untuk memberi jarak ke 'Akses Cepat'.
+    --}}
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Akses Cepat</h3>
 
-                @forelse($aktivitasTerbaru as $aktivitas)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            @if($aktivitas->tipe == 'Lomba')
-                                <span class="badge badge-primary">Lomba</span>
-                            @elseif($aktivitas->tipe =='Webinar')
-                                <span class="badge badge-success">Webinar</span>
-                            @elseif($aktivitas->tipe == 'Admin')>
-                           <span class="badge badge-warning">Admin</span>
-                            @endif
+    {{--
+        'list-group flex flex-row' (Bootstrap/Mix) -> 'grid' (Tailwind)
+        Menggunakan Grid CSS adalah cara Tailwind yang paling umum dan responsif
+        untuk menampilkan item 'cardQuickAdmin' Anda secara horizontal.
+        - 'grid-cols-1': 1 kolom di layar HP
+        - 'sm:grid-cols-2': 2 kolom di layar kecil
+        - 'lg:grid-cols-4': 4 kolom di layar besar
+        - 'gap-4': Memberi jarak antar kartu
+        - 'mb-6': Memberi jarak bawah (margin-bottom 1.5rem)
+    --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        @include('partial.cardQuickAdmin')
+    </div>
 
-                            <a href="{{ $aktivitas->url }}" class="ml-2">
-                                {{ $aktivitas->judul }}
-                            </a>
-                        </div>
-                        <small>{{ $aktivitas->created_at->diffForHumans() }}</small>
-                    </li>
-                @empty
-                    <li class="list-group-item">Belum ada aktivitas.</li>
-                @endforelse
+    {{-- history aktivitas --}}
+    {{--
+        'col-lg-12' (Bootstrap Grid) -> 'w-full mt-6' (Tailwind)
+        'w-full' adalah default, tapi 'mt-6' (margin-top 1.5rem) penting
+        untuk memberi jarak dari 'Akses Cepat' di atas.
+    --}}
+    <div class="w-full mt-6">
+        {{-- 'card shadow mb-4' (Bootstrap) -> Styling kartu Tailwind --}}
+        <div class="bg-white overflow-hidden shadow-lg rounded-lg mb-6">
 
-            </ul>
+            {{-- 'card-header py-3' -> Styling header kartu Tailwind --}}
+            <div class="px-6 py-4 border-b border-gray-200">
+                {{-- 'font-weight-bold' -> 'font-bold', 'text-primary' -> 'text-blue-600' --}}
+                <h6 class="m-0 font-bold text-blue-600">Aktivitas Terbaru</h6>
+            </div>
+
+            {{-- 'card-body' -> 'p-6'. Kita hapus padding di sini agar list bisa 'flush' --}}
+            {{--
+                CATATAN: Untuk 'list-group-flush' (Bootstrap), list item-nya
+                menyentuh tepi kiri dan kanan card.
+                Untuk meniru ini, kita HAPUS padding dari card-body ('p-0').
+            --}}
+            <div class="p-0">
+                {{--
+                    'list-group list-group-flush' (Bootstrap) -> 'divide-y' (Tailwind)
+                    'divide-y' adalah cara Tailwind terbaik untuk meniru 'list-group'.
+                    Ini akan otomatis menambahkan garis batas di antara setiap 'li'.
+                --}}
+                <ul classclass="divide-y divide-gray-200">
+
+                    @forelse($aktivitasTerbaru as $aktivitas)
+                        {{--
+                            'list-group-item d-flex...' (Bootstrap) -> 'flex ...' (Tailwind)
+                            'px-6 py-4' ditambahkan di sini untuk menggantikan padding 'list-group-item'
+                            yang kita hilangkan dari 'card-body' di atas.
+                        --}}
+                        <li class="flex justify-between items-center px-6 py-4">
+                            {{-- Wrapper untuk badge dan link agar rapi --}}
+                            <div class="flex items-center">
+                                @if($aktivitas->tipe == 'Lomba')
+                                    {{-- 'badge badge-primary' (Bootstrap) -> Badge Tailwind --}}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Lomba
+                                    </span>
+                                @elseif($aktivitas->tipe =='Webinar')
+                                    {{-- 'badge badge-success' (Bootstrap) -> Badge Tailwind --}}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        Webinar
+                                    </span>
+                                {{--
+                                    TYPO FIX: Saya perbaiki 'Admin')>' menjadi 'Admin')'
+                                --}}
+                                @elseif($aktivitas->tipe == 'Admin')
+                                    {{-- 'badge badge-warning' (Bootstrap) -> Badge Tailwind --}}
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                        Admin
+                                    </span>
+                                @endif
+
+                                {{--
+                                    'ml-2' (Bootstrap 0.5rem) -> 'ml-2' (Tailwind 0.5rem)
+                                    Menambahkan styling link agar terlihat seperti link.
+                                --}}
+                                <a href="{{ $aktivitas->url }}" class="ml-2 font-medium text-blue-600 hover:text-blue-800 hover:underline">
+                                    {{ $aktivitas->judul }}
+                                </a>
+                            </div>
+                            {{-- 'small' (HTML) -> Styling 'small' Tailwind --}}
+                            <small class="text-sm text-gray-500">{{ $aktivitas->created_at->diffForHumans() }}</small>
+                        </li>
+                    @empty
+                        {{-- 'list-group-item' -> Cukup tambahkan padding --}}
+                        <li class="px-6 py-4 text-gray-500">Belum ada aktivitas.</li>
+                    @endforelse
+
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-       </div>
         </div>
 
     </div>
