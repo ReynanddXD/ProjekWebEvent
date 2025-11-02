@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LombaUser;
+use App\Http\Controllers\WebinarUser;
 use App\Models\Lomba;
 use App\Models\User;
+use App\Models\userLomba;
+use App\Models\userWebinar;
 use App\Models\Webinar;
 use Illuminate\Http\Request;
 
@@ -14,6 +18,11 @@ class DashboardAdminController extends Controller
         $jumlahLomba = Lomba::count();
         $jumlahWebinar = Webinar::count();
         $jumlahAdmin = User::where('role', 'admin')->count();
+
+        $totalPendaftarLomba = userLomba::count();
+        $totalPendaftarWebinar = userWebinar::count();
+
+        $totalPendaftar = $totalPendaftarLomba+$totalPendaftarWebinar;
 
         $lombas = Lomba::select('lomba as judul', 'created_at', 'id')
         ->latest() //mengurutkan descending
@@ -53,7 +62,7 @@ class DashboardAdminController extends Controller
     $aktivitasTerbaru = $semuaAktivitas->sortByDesc('created_at')->take(5);
 
         return view('halaman.dashboard', ['totalLomba'=>$jumlahLomba,
-        'totalWebinar'=>$jumlahWebinar, 'aktivitasTerbaru' => $aktivitasTerbaru, 'totalAdmin'=>$jumlahAdmin,
+        'totalWebinar'=>$jumlahWebinar, 'aktivitasTerbaru' => $aktivitasTerbaru, 'totalAdmin'=>$jumlahAdmin,'totalPendaftar' => $totalPendaftar,
 
     ]);
     }
