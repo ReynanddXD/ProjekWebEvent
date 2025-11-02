@@ -74,11 +74,9 @@ Route::get('/dashboardUser', function () {
     return view('halaman.dashboardUser');
 })->middleware(['auth', 'verified', 'RoleCheck:user, admin'])->name('dashboardUser');
 
-Route::middleware(['auth', 'verified', 'RoleCheck:user'])->group(function () {
-
+Route::middleware(['auth', 'verified', 'RoleCheck:user, admin'])->group(function () {
 // agar dahsboard user bisa narik data lomba dan webinar
 Route::get('/dashboardUser', [DashboardUserController::class, 'index'])->name('dashboardUser');
-
 // route lomba dan webinar user
 Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
 Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');

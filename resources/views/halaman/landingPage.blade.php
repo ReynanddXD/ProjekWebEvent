@@ -169,13 +169,16 @@
                 </a>
             </p>
 
-            <a href="mailto:info@myready.com" 
+            <!-- Tombol membuka Gmail langsung ke menu Compose -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=2310631170114@student.unsika.ac.id&su=Bertanya/Saran/Kolaborasi"
+            target="_blank"
             class="px-8 py-3 bg-amber-400-custom text-dark-indigo font-semibold rounded-lg shadow-lg 
                     hover:bg-yellow-400 transition duration-300 transform hover:scale-105">
                 ✉️ Email Kami Sekarang
             </a>
         </div>
     </section>
+
 
     @include('partial.footer') 
 
