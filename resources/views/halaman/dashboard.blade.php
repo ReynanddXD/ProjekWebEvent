@@ -125,8 +125,10 @@
                         <div>
                             @if($aktivitas->tipe == 'Lomba')
                                 <span class="badge badge-primary">Lomba</span>
-                            @else
+                            @elseif($aktivitas->tipe =='Webinar')
                                 <span class="badge badge-success">Webinar</span>
+                            @elseif($aktivitas->tipe == 'Admin')>
+                           <span class="badge badge-warning">Admin</span>
                             @endif
 
                             <a href="{{ $aktivitas->url }}" class="ml-2">

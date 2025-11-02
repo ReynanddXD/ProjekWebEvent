@@ -10,6 +10,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LombaUser;
 use App\Http\Controllers\WebinarUser;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\PengumumanController;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -37,9 +38,9 @@ Route::get('/dashboard/admin/webinar',function(){
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin', function(){
-    return view('halaman.dashboard');
-})->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('halaman.dashboard');
+// Route::get('/admin', function(){
+//     return view('halaman.dashboard');
+// })->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('halaman.dashboard');
 
 //menampilkan isi form
 // Lomba (admin only)
@@ -93,13 +94,13 @@ Route::middleware(['auth', 'verified', 'RoleCheck:user, admin'])->group(function
 });
 
 //rute admin baru
-Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+//Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
 //grup buat rute admin
 // Terapkan middleware 'auth' DAN 'admin'
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('halaman.dashboard');
 
     // Route Manajemen Admin
     Route::get('/users', [UserManagementController::class, 'index'])->name('admin.users.index');
@@ -107,5 +108,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('/users', [UserManagementController::class, 'store'])->name('admin.users.store');
 
     // ... (Route Lomba, Webinar, dll. juga harus di dalam sini) ...
+Route::resource('pengumuman', PengumumanController::class);
+Route::resource('/admin/pengumuman', PengumumanController::class);
+// Di dalam grup middleware admin Anda
+// Route::resource('/admin/pengumuman', PengumumanController::class);
 });
+
+//rute pengumuman
+
+
 

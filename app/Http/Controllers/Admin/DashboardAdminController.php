@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lomba;
+use App\Models\User;
 use App\Models\Webinar;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class DashboardAdminController extends Controller
     public function index(){
         $jumlahLomba = Lomba::count();
         $jumlahWebinar = Webinar::count();
+        $jumlahAdmin = User::where('role', 'admin')->count();
 
         $lombas = Lomba::select('lomba as judul', 'created_at', 'id')
         ->latest() //mengurutkan descending
@@ -30,16 +32,28 @@ class DashboardAdminController extends Controller
                             $item->tipe = 'webinar';
                             $item->url = route('webinar.index'); // Asumsi link ke tabel webinar
                             return $item;
-                        });
+                              });
+        $admins = User::select('name as judul', 'created_at', 'id')
+        ->where('role', 'admin')
+        ->latest()
+        ->take(5)
+        ->get()
+        ->map(function($item){
+            $item->tipe = 'Admin';
+            $item->url = route('admin.users.index');
+            return $item;
+        });
+
+
 
     // 3. Gabungkan kedua collection
-    $semuaAktivitas = $lombas->merge($webinars);
+    $semuaAktivitas = $lombas->merge($webinars)->merge($admins);
 
     // 4. Urutkan gabungan berdasarkan 'created_at' dan ambil 5 teratas
     $aktivitasTerbaru = $semuaAktivitas->sortByDesc('created_at')->take(5);
 
         return view('halaman.dashboard', ['totalLomba'=>$jumlahLomba,
-        'totalWebinar'=>$jumlahWebinar, 'aktivitasTerbaru' => $aktivitasTerbaru,
+        'totalWebinar'=>$jumlahWebinar, 'aktivitasTerbaru' => $aktivitasTerbaru, 'totalAdmin'=>$jumlahAdmin,
 
     ]);
     }
