@@ -1,26 +1,17 @@
 @extends('layouts.adminLayouts')
 @section('content')
 
-{{--
-    DIRAPIKAN:
-    Mengganti 'p-5 container' (campuran Bootstrap) dengan 'px-6 py-4'
-    agar konsisten dengan halaman lain.
---}}
+
 <div class="px-6 py-4">
     <h2 class="text-2xl font-bold">Manajemen Data Webinar</h2>
     <p class="mb-6 text-gray-600">Daftar semua Webinar yang telah di input.</p>
 
-    {{--
-        DIRAPIKAN:
-        Mengganti tombol kuning 'bg-[#FACC15]' dengan tombol biru standar
-        agar konsisten dengan tombol "Tambah Admin" dan "Tambah Pengumuman".
-    --}}
     <a href="{{ route('webinar.create') }}"
        class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
         <i class="fas fa-plus mr-2"></i> Tambah Webinar Baru
     </a>
 
-    {{-- Wrapper tabel sudah bagus, tidak diubah --}}
+
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -35,11 +26,7 @@
                     <th scope="col" class="px-6 py-3">Kategori</th>
                     <th scope="col" class="px-6 py-3">Tempat</th>
                     <th scope="col" class="px-6 py-3">Gambar</th>
-                    {{--
-                        DITAMBAHKAN:
-                        Kolom "Aksi" untuk Edit/Delete, sangat penting
-                        untuk halaman manajemen.
-                    --}}
+
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Aksi</span>
                         Aksi
@@ -55,11 +42,7 @@
                     <td class="px-6 py-4">
                         {{ $item->webinar }}
                     </td>
-                    {{--
-                        DIRAPIKAN:
-                        Menambahkan 'max-w-xs' dan 'truncate' agar deskripsi panjang
-                        tidak merusak layout tabel.
-                    --}}
+
                     <td class="px-6 py-4 max-w-xs truncate">
                         {{ $item->deskripsiWebinar }}
                     </td>
@@ -82,32 +65,26 @@
                         {{ $item->tempat }}
                     </td>
                     <td class="px-6 py-4">
-                        {{--
-                            DIRAPIKAN:
-                            Mengganti 'width="100"' dengan kelas Tailwind 'w-24'
-                            dan 'h-16' agar ukuran gambar seragam dan rapi.
-                        --}}
+
                         <img src="{{ asset('storage/' . $item->gambar) }}" alt="Poster Webinar"
                              class="w-24 h-16 object-cover rounded-md">
                     </td>
 
-                    {{--
-                        DITAMBAHKAN:
-                        Tombol Aksi (Edit & Delete) dengan styling
-                        yang konsisten dari file 'pengumuman' sebelumnya.
-                    --}}
-                    @foreach ($semuaWebinar as $webinar )
+
+
 
 
                     <td class="px-6 py-4 whitespace-nowrap">
+
                         <div class="flex items-center gap-2">
                             {{-- Ganti '#' dengan route edit yang benar --}}
-                            <a href="{{ route('webinar.edit', $webinar->id) }}" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">
+
+                            <a href="{{ route('webinar.edit', $item->id) }}" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">
                                 <i class="fas fa-edit"></i>
                             </a>
 
                             {{-- Ganti '#' dengan route destroy yang benar --}}
-                            <form action="{{ route('webinar.destroy', $webinar->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                            <form action="{{ route('webinar.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
@@ -115,8 +92,9 @@
                                 </button>
                             </form>
                         </div>
+
                     </td>
-                       @endforeach
+
                 </tr>
                 @empty
                 {{--
