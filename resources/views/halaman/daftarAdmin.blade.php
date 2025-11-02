@@ -102,7 +102,17 @@
                                     'btn btn-sm btn-warning' (Bootstrap) -> Kumpulan kelas utility Tailwind.
                                     'px-2.5 py-1.5' untuk ukuran 'sm' dan 'text-sm'.
                                 --}}
-                                <a href="#" class="px-2.5 py-1.5 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">Edit</a>
+                                <a href="{{ route('admin.users.edit', $admin->id) }}" class="px-2.5 py-1.5 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">Edit</a>
+                                     <form action="{{ route('admin.users.destroy', $admin->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    {{--
+                                        'btn btn-sm btn-danger' (Bootstrap) -> Tombol ikon 'sm' Tailwind.
+                                    --}}
+                                    <button type="submit" class="px-2.5 py-1.5 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                                       Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

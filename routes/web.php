@@ -110,6 +110,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // ... (Route Lomba, Webinar, dll. juga harus di dalam sini) ...
 Route::resource('pengumuman', PengumumanController::class);
 Route::resource('/admin/pengumuman', PengumumanController::class);
+Route::get('/users/{user}/edit', [UserManagementController::class, 'edit'])->name('admin.users.edit');
+Route::put('/users/{user}', [UserManagementController::class, 'update'])->name('admin.users.update');
+Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('admin.users.destroy');
+
 // Di dalam grup middleware admin Anda
 // Route::resource('/admin/pengumuman', PengumumanController::class);
 });

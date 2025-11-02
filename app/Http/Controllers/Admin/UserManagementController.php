@@ -39,4 +39,35 @@ class UserManagementController extends Controller
         return redirect()->route('admin.users.index')
                          ->with('success', 'Admin baru berhasil ditambahkan.');
     }
+    public function edit(User $user){
+        return view('halaman.editAdmin', ['user'=>$user]);
+    }
+    public function update(Request $request, User $user){
+$request->validate(['name' => ['required', 'string', 'max:255'],
+        // Beri tahu 'unique' untuk mengabaikan ID $user saat ini
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+        // Buat password 'nullable' (boleh kosong)
+        'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+    ]);
+    // Ambil data yang divalidasi
+    $validatedData = $request->only('name', 'email');
+// Cek jika admin mengisi password baru
+    if ($request->filled('password')) {
+        $validatedData['password'] = Hash::make($request->password);
+    }
+
+    // Update data user
+    $user->update($validatedData);
+
+    // Ganti pesan suksesnya
+    return redirect()->route('admin.users.index')
+        ->with('success', 'Data admin berhasil diperbarui.');
+
+    }
+       public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.users.index')
+        ->with('success', "Data admin berhasil dihapus");
+    }
 }
