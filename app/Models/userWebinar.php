@@ -11,7 +11,7 @@ class userWebinar extends Model
          protected $table = 'user_webinar';
   protected $fillable= [
         'nama',
-           'email',
+        'email',
        'noHp',
         'instansi',
        'pekerjaan',

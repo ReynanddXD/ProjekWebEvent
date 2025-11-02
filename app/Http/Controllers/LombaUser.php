@@ -21,8 +21,6 @@ class LombaUser extends Controller
 
 
     public function create(){
-
-
     $kategoriLomba = Lomba::all(); // ambil semua data lomba
     return view('form.formUserLomba', compact('kategoriLomba'));
 

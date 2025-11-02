@@ -9,7 +9,7 @@ class Lomba extends Model
 {
     use HasFactory;
 
-    protected $table = 'lombas'; // ganti sesuai nama tabelmu
+    protected $table = 'lombas';
     protected $fillable =[
         'lomba',
         'pelaksanaan',
