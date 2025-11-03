@@ -10,7 +10,7 @@
 
 
      @vite('resources/css/app.css', 'resources/css/cardAdmin.css')
-    <title>Document</title>
+    <title>Dasboard Admin</title>
 </head>
 <body>
 
