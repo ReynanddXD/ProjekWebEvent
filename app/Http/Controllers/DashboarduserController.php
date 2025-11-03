@@ -6,8 +6,8 @@ use App\Models\User;
 use App\Models\Webinar;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pengumuman;
-use App\Models\userLomba;
-use App\Models\userWebinar;
+use App\Models\UserLomba;
+use App\Models\UserWebinar;
 
 use Illuminate\Http\Request;
 
@@ -15,11 +15,14 @@ class DashboarduserController extends Controller
 {
  public function index()
     {
-        $userId = Auth::id();
+        $user = Auth::user(); //dapatin data user yg lagi login
+
+        $userId = $user->id; //gunakan untuk webinar
+        $userEmail = $user->email; //gunakna untuk lomba
 
         // Ambil data lomba dan webinar berdasarkan user_id
-        $lombas = userLomba::with('lomba')->where('user_id', $userId)->get();
-        $webinars = userWebinar::with('webinar')->where('user_id', $userId)->get();
+      $lombas = UserLomba::with('lomba')->where('email', $userEmail)->get();
+        $webinars = UserWebinar::with('webinar')->where('user_id', $userId)->get();
 
         return view('halaman.user.dashboardUser', compact('lombas', 'webinars'));
     }
