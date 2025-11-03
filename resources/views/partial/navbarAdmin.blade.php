@@ -1,9 +1,6 @@
-{{--
-  PERUBAHAN DI SINI:
-  1. Menambahkan 'shadow-sm' untuk efek "mengambang" yang halus.
-  2. Mengganti 'border-gray-200' menjadi 'border-b border-gray-200'
-     (menentukan border di 'b'ottom/bawah).
---}}
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
 <nav class="bg-[#ffffff] border-b border-gray-200 shadow-sm">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -22,7 +19,7 @@
       </button>
 
 
-      <p class="ml-3 text-[#1E3A8A] font-medium">Hai! Welcome back Admin!</p>
+      <p class="ml-3 text-[#1E3A8A] font-medium">Hai! Welcome back {{ Auth::user()->name }}!</p>
 
 
 
