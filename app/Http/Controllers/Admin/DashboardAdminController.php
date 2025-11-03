@@ -27,14 +27,14 @@ class DashboardAdminController extends Controller
         $totalPendaftar = $totalPendaftarLomba+$totalPendaftarWebinar;
 
         $lombas = Lomba::select('lomba as judul', 'created_at', 'id')
-
         ->latest() //mengurutkan descending
         ->take(5)
         ->get()
+        //menambahkan properti baru setiap itemnya
         ->map(function($item){
             $item->tipe = 'lomba';
-                        $item->url = route('lomba.index'); // Asumsi link ke tabel lomba
-                        return $item;
+            $item->url = route('lomba.index'); // Asumsi link ke tabel lomba
+            return $item;
         });
        $webinars = Webinar::select('webinar as judul', 'created_at', 'id')
                         ->latest()
@@ -45,6 +45,7 @@ class DashboardAdminController extends Controller
                             $item->url = route('webinar.index'); // Asumsi link ke tabel webinar
                             return $item;
                               });
+
         $admins = User::select('name as judul', 'created_at', 'id')
         ->where('role', 'admin') //filter
         ->latest()
@@ -68,10 +69,9 @@ class DashboardAdminController extends Controller
 
 
 
-    // 3. Gabungkan kedua collection
+    //  Gabungkan  collection
     $semuaAktivitas = $lombas->merge($webinars)->merge($admins)->merge($pengumuman);
-
-    // 4. Urutkan gabungan berdasarkan 'created_at' dan ambil 5 teratas
+    //  Urutkan gabungan berdasarkan 'created_at' dan ambil 5 teratas
     $aktivitasTerbaru = $semuaAktivitas->sortByDesc('created_at')->take(5);
 
         return view('halaman.dashboard', [
