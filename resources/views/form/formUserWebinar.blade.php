@@ -114,7 +114,7 @@
                         <option value="" disabled selected class="text-gray-500">Pilih salah satu webinar</option>
                         @foreach ($kategoriWebinar as $webinar)
                             <option value="{{ $webinar->id }}" class="text-gray-900 {{ old('webinar_id') == $webinar->id ? 'font-semibold bg-indigo-50' : '' }}">
-                                {{ $webinar->judul }}
+                                {{ $webinar->webinar }}
                             </option>
                         @endforeach
                     </select>

@@ -27,45 +27,42 @@ class LombaUser extends Controller
 
     }
 
-      public function store(Request $request)
-    {
-        // Validasi input
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'required|email',
-            'noHp' => 'required|string|max:20',
-            'instansi' => 'required|string|max:255',
-            'lomba_id' => 'required|exists:lombas,id',
-            'pekerjaan' => 'required|string|max:255',
-        ]);
+public function store(Request $request)
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'nama'       => 'required|string|max:255',
+        'email'      => 'required|email',
+        'noHp'       => 'required|string|max:20',
+        'instansi'   => 'required|string|max:255',
+        'lomba_id'   => 'required|exists:lombas,id',
+        'pekerjaan'  => 'required|string|max:255',
+    ]);
 
-        // ✅ Ambil user_id dari session tanpa auth()->id() atau user()
-        // $userId = session()->get(Auth::getName());
-        // $validatedData['user_id'] = $userId;
+    // ✅ Ambil user login (pastikan user sudah login)
+    $validatedData['user_id'] = auth()->id();
 
-        // Cek apakah user sudah mendaftar lomba ini sebelumnya
-        $sudahTerdaftar = \App\Models\UserLomba::where('email', $validatedData['email'])
-            ->where('lomba_id', $request->lomba_id)
-            ->exists();
+    // Cek apakah user sudah mendaftar lomba ini sebelumnya
+    $sudahTerdaftar = \App\Models\UserLomba::where('email', $validatedData['email'])
+        ->where('lomba_id', $request->lomba_id)
+        ->exists();
 
-        if ($sudahTerdaftar) {
-            return redirect()->route('ulomba.create')
-                ->with('error', 'Anda sudah mendaftar lomba ini sebelumnya.');
-        }
-
-        // Ambil detail lomba
-        $lomba = \App\Models\Lomba::findOrFail($request->lomba_id);
-
-        if ($lomba->harga > 0) {
-            // Jika berbayar → simpan ke session dan redirect ke pembayaran
-            session(['pendaftaran_lomba' => $validatedData]);
-            return redirect()->route('payment.checkout', ['lomba_id' => $lomba->id]);
-        } else {
-            // Jika gratis → langsung simpan ke database
-            \App\Models\UserLomba::create($validatedData);
-            return redirect()->route('ulomba.create')->with('success', 'Pendaftaran lomba berhasil!');
-        }
+    if ($sudahTerdaftar) {
+        return redirect()->route('ulomba.create')->with('error', 'Anda sudah mendaftar lomba ini sebelumnya.');
     }
+
+    // Ambil detail lomba
+    $lomba = \App\Models\Lomba::findOrFail($request->lomba_id);
+
+    if ($lomba->harga > 0) {
+        session(['pendaftaran_lomba' => $validatedData]);
+        return redirect()->route('payment.checkout', ['lomba_id' => $lomba->id]);
+    } else {
+        \App\Models\UserLomba::create($validatedData);
+        return redirect()->route('ulomba.create')->with('success', 'Pendaftaran lomba berhasil!');
+    }
+}
+
 
 
   // Halaman checkout

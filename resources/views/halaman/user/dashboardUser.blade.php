@@ -70,7 +70,7 @@
                         @foreach ($webinars as $webinar)
                             <div class="bg-gray-50 shadow-md rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
                                 <h3 class="text-lg font-bold text-indigo-700 mb-3">
-                                    {{ $webinar->webinar->judul ?? 'Webinar Tidak Ditemukan' }}
+                                    {{ $webinar->webinar->webinar ?? 'Webinar Tidak Ditemukan' }}
                                 </h3>
                                 <div class="text-sm text-gray-700 space-y-1">
                                     <p><strong>Instansi:</strong> {{ $webinar->instansi }}</p>
