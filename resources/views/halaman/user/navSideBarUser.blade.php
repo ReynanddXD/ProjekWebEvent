@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body class="bg-gray-100">
+<<body class="bg-gray-100">
 
     {{-- NAVBAR --}}
     <nav class="fixed top-0 left-0 w-full z-50 bg-indigo-900 text-white shadow-lg">
@@ -22,8 +22,13 @@
                 <span class="text-xl font-semibold tracking-wide">MyReady</span>
             </div>
 
+            {{-- Hamburger button for mobile --}}
+            <button class="sm:hidden text-white text-2xl" id="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
             {{-- User / Dashboard Button --}}
-            <div>
+            <div class="hidden sm:flex">
                 @if (Route::has('login'))
                     @auth
                         <div class="relative inline-block text-left group">
@@ -49,34 +54,71 @@
                     @endauth
                 @endif
             </div>
+
         </div>
     </nav>
 
     {{-- SIDEBAR --}}
-    <aside class="fixed top-16 left-0 w-64 h-full bg-white shadow-lg py-8 px-6">
-        <h2 class="text-xl font-bold text-indigo-700 mb-6 tracking-wide">Dashboard Menu</h2>
-        <nav class="space-y-3">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-white shadow-lg py-8 px-6 flex flex-col
+            transform -translate-x-full sm:translate-x-0 transition-transform duration-300 ease-in-out z-40">
 
-            <a href="{{ route('dashboardUser') }}" 
-            class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-indigo-100 hover:text-indigo-700 transition">
+        {{-- Menu utama --}}
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-indigo-700 mb-6 tracking-wide">Dashboard Menu</h2>
+            <nav class="space-y-3">
+                <a href="{{ route('dashboardUser') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('dashboardUser') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-700' }}">
                 <i class="fa-solid fa-house"></i> Beranda
-            </a>
+                </a>
 
-            <a href="{{ route('dashboardUser.pengumuman') }}" 
-            class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-indigo-100 hover:text-indigo-700 transition">
+                <a href="{{ route('dashboardUser.edit') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('dashboardUser.edit') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-700' }}">
+                    <i class="fa-solid fa-user-pen"></i> Edit Profil
+                </a>
+
+                <a href="{{ route('dashboardUser.pengumuman') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('dashboardUser.pengumuman') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-700' }}">
                 <i class="fa-solid fa-bullhorn"></i> Pengumuman
-            </a>
+                </a>
 
-            <a href="{{ route('dashboardUser.lomba') }}" 
-            class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-indigo-100 hover:text-indigo-700 transition">
+                <a href="{{ route('dashboardUser.lomba') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('dashboardUser.lomba') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-700' }}">
                 <i class="fa-solid fa-trophy"></i> Lomba
-            </a>
+                </a>
 
-            <a href="{{ route('dashboardUser.seminar') }}" 
-            class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-indigo-100 hover:text-indigo-700 transition">
+                <a href="{{ route('dashboardUser.seminar') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('dashboardUser.seminar') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-indigo-100 hover:text-indigo-700' }}">
                 <i class="fa-solid fa-chalkboard-teacher"></i> Seminar
-            </a>
-        </nav>
+                </a>
+            </nav>
+        </div>
+
+        {{-- Logout di dasar sidebar --}}
+        <div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-red-100 rounded-lg">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </form>
+        </div>
     </aside>
+
+    <!-- Script Toggle Sidebar -->
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        btn.addEventListener('click', () => {
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+            } else {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
 </body>
 </html>

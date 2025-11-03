@@ -1,127 +1,132 @@
-@extends('layouts.main')
-
+@extends('layouts.mainUser')
+@section('title', 'Daftar Lomba')
 @section('content')
-<div>
-    {{-- pesan suskes --}}
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-
-    {{-- pesan error --}}
-    @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+<section id="lomba" class="bg-gray-100 py-12 sm:py-16 min-h-screen">
+    <div class="ml-0 sm:ml-64 p-4 sm:p-6 transition-all duration-300">
+        <div class="w-full max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6 sm:p-10 border border-gray-200">
+            <!-- Judul -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-10 text-gray-800 relative inline-block w-full">
+                <span class="text-indigo-600">Daftar</span> Lomba
+                <span
+                    class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1.5 bg-amber-500 rounded-full"></span>
+            </h2>
+            
+            {{-- Pesan sukses --}}
+            @if (session('success'))
+            <div class="mb-6 p-4 rounded-lg bg-green-100 border border-green-400 text-green-800 flex items-center">
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{{ session('success') }}</span>
             </div>
-        @endif
-        <div class="flex items-center justify-center min-h-screen bg-gray-100">
+            @endif
 
-        <div class="relative w-full max-w-screen p-8 mx-4 bg-white rounded-lg shadow-lg">
+            {{-- Pesan error dari session --}}
+            @if (session('error'))
+            <div class="mb-6 p-4 rounded-lg bg-red-100 border border-red-400 text-red-800">
+                <div class="flex items-center mb-2">
+                    <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="font-semibold">Terjadi kesalahan:</span>
+                </div>
+                <p>{{ session('error') }}</p>
+            </div>
+            @endif
 
-            <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            {{-- Keterangan jika profil belum lengkap --}}
+            @if (empty(auth()->user()->no_hp) || empty(auth()->user()->instansi) || empty(auth()->user()->pekerjaan))
+            <div class="mb-4 p-4 rounded-lg bg-yellow-100 border border-yellow-400 text-yellow-800 flex items-start">
+                <svg class="w-6 h-6 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01m-.01-10a9 9 0 110 18 9 9 0 010-18z" />
+                </svg>
+                <div>
+                    <p class="font-semibold">Lengkapi profil Anda terlebih dahulu.</p>
+                    <p>Silakan edit profil untuk mengisi nomor HP, instansi, dan pekerjaan sebelum dapat mendaftar lomba.</p>
+                    <a href="{{ route('dashboardUser.edit') }}"
+                        class="inline-block mt-2 text-sm font-medium text-blue-600 hover:underline">
+                        Edit Profil Sekarang
+                    </a>
+                </div>
+            </div>
+            @endif
 
-         <div class="flex flex-col justify-center">
-                    <h1 class="text-4xl font-bold text-gray-800">
-                     Daftar Lomba
-                    </h1>
-                    <p class="mt-4 text-gray-600">
-                        Daftarkan dirimu sekarang juga!
-                    </p>
+            <!-- Form -->
+            <form action="{{ route('ulomba.store') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
+                @csrf
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nama -->
+                    <div>
+                        <label for="nama" class="block mb-2 text-sm font-semibold text-gray-800">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" value="{{ auth()->user()->name }}" readonly
+                            class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-3 shadow-sm cursor-not-allowed">
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-semibold text-gray-800">Email</label>
+                        <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" readonly
+                            class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-3 shadow-sm cursor-not-allowed">
+                    </div>
+
+                    <!-- No Whatsapp -->
+                    <div>
+                        <label for="noHP" class="block mb-2 text-sm font-semibold text-gray-800">No. Whatsapp</label>
+                        <input type="text" id="noHP" name="noHp" value="{{ auth()->user()->no_hp }}" readonly
+                            class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-3 shadow-sm cursor-not-allowed">
+                    </div>
+
+                    <!-- Instansi -->
+                    <div>
+                        <label for="instansi" class="block mb-2 text-sm font-semibold text-gray-800">Instansi</label>
+                        <input type="text" id="instansi" name="instansi" value="{{ auth()->user()->instansi }}" readonly
+                            class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-3 shadow-sm cursor-not-allowed">
+                    </div>
+
+                    <!-- Pekerjaan -->
+                    <div class="md:col-span-2">
+                        <label for="pekerjaan" class="block mb-2 text-sm font-semibold text-gray-800">Pekerjaan</label>
+                        <select name="pekerjaan" id="pekerjaan" disabled
+                            class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-3 shadow-sm cursor-not-allowed">
+                            <option value="umum" {{ auth()->user()->pekerjaan == 'umum' ? 'selected' : '' }}>Umum</option>
+                            <option value="pelajar" {{ auth()->user()->pekerjaan == 'pelajar' ? 'selected' : '' }}>Pelajar SMA/SMK</option>
+                            <option value="mahasiswa" {{ auth()->user()->pekerjaan == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa</option>
+                        </select>
+                        <input type="hidden" name="pekerjaan" value="{{ auth()->user()->pekerjaan }}">
+                    </div>
+
+                    <!-- Pilih Lomba -->
+                    <div class="md:col-span-2">
+                        <label for="lomba_id" class="block mb-2 text-sm font-semibold text-gray-800">Pilih Lomba</label>
+                        <select name="lomba_id" id="lomba_id" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-3 shadow-sm transition duration-150">
+                            <option value="" disabled selected>Pilih salah satu lomba</option>
+                            @foreach ($kategoriLomba as $uLomba)
+                                <option value="{{ $uLomba->id }}" {{ old('lomba_id') == $uLomba->id ? 'selected' : '' }}>
+                                    {{ $uLomba->lomba }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('lomba_id')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
-<div class="inline-flex">
-    <form action="{{ route('ulomba.store') }}" method="POST" class="p-3 max-w-lg mx-auto " enctype="multipart/form-data">
-  @csrf
-        <div class="mb-1">
-            {{-- input nama lomba --}}
-            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Nama</label>
-            <input type="text" id="nama" name="nama" value="{{ old('nama') }}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                {{-- waktu lomba --}}
-                  {{-- <label for="mulaiLomba" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pelaksanaan</label>
-            <input type="date" id="mulai"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                     <label for="akhir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pelaksanaan</label>
-            <input type="date" id="akhir"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
-
-                   {{-- email --}}
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Email</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                {{-- no wa --}}
-
-  <label for="noHp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">No. Whatsapp</label>
-            <input type="text" id="noHp" name="noHp" value="{{ old('noHp') }}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                {{-- instansi --}}
-                 <label for="instansi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Instansi</label>
-            <input type="text" id="noHp" name="instansi" value="{{ old('instansi') }}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                {{-- kategori target lomba --}}
-   {{-- Kategori online/offline --}}
-          <label for="lomba_id">Pilih Lomba:</label>
-<select name="lomba_id" id="lomba_id" required>
-    <option value="" disabled selected>Pilih salah satu lomba</option>
-    @foreach ($kategoriLomba as $uLomba)
-        <option value="{{ $uLomba->id }}" {{ old('lomba_id') == $uLomba->id ? 'selected' : '' }}>
-            {{ $uLomba->lomba }}
-        </option>
-    @endforeach
-</select>
-@error('lomba_id')
-    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-@enderror
-
-
-                {{-- Deskripsi lomba --}}
-            <label for="pekerjaan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Pekerjaan</label>
-          <select name="pekerjaan" id="pekerjaan">
-                <option value="umum">Umum</option>
-                <option value="pelajar">Pelajar SMA/SMK</option>
-                <option value="mahasiswa">Mahasiswa</option>
-
-            </select>
-{{-- Upload foto brosur
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="brosur">Upload
-                file</label>
-            <input name="gambar"
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                aria-describedby="user_avatar_help" id="brosur" type="file">
-            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Tinggalkan info gambar</div> --}}
-
-            <button type="submit"
-                class="px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Submit
-            </button>
-
-    </form>
-</div>
-{{-- <div class="mr-5 row max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Daftar data Lomba</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lihat semua data lomba yang sudah masuk ke dalam sistem.</p>
-    <a href="{{ route('lomba.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        Selengkapnya
-        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-        </svg>
-    </a>
-</div> --}}
-
-</div>
-</div>
-</div>
-
+                <!-- Tombol Submit -->
+                <div class="pt-6 text-center">
+                    <button type="submit"
+                        class="w-full sm:w-auto px-10 py-3 text-base font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 hover:shadow-md transition duration-200">
+                        Kirim Pendaftaran
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 @endsection

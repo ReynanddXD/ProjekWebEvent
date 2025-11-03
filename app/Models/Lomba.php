@@ -31,5 +31,10 @@ class Lomba extends Model
         return $this->belongsToMany(User::class, 'lomba_user', 'lomba_id', 'user_id')
                     ->withTimestamps();
     }
+    
+    public function peserta()
+{
+    return $this->hasMany(userLomba::class, 'lomba_id');
+}
 
 }

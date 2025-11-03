@@ -25,4 +25,9 @@ class Webinar extends Model
         'mulai' => 'datetime:H:i',
         'selesai' => 'datetime:H:i',
     ];
+    public function peserta()
+{
+    return $this->hasMany(userWebinar::class, 'webinar_id');
+}
+
 }

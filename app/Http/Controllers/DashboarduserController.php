@@ -5,33 +5,45 @@ use App\Models\Lomba;
 use App\Models\User;
 use App\Models\Webinar;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pengumuman;
+use App\Models\userLomba;
+use App\Models\userWebinar;
 
 use Illuminate\Http\Request;
 
 class DashboarduserController extends Controller
 {
-public function index()
+ public function index()
     {
-        // 1. Ambil data user yang sedang login
-        $user = Auth::user();
+        $userId = Auth::id();
 
-        // 2. Ambil lomba yang diikuti user melalui relasi lombaDiikuti()
-        // Menggunakan latest() untuk mengurutkan berdasarkan waktu pembuatan di pivot table (jika ada)
-        // atau waktu pembuatan lomba (tergantung implementasi)
-        // Eager loading bisa ditambahkan untuk performa, misal: $user->lombaDiikuti()->latest()->get();
-        $lombaDiikuti = $user->lombaDiikuti()->latest()->get();
+        // Ambil data lomba dan webinar berdasarkan user_id
+        $lombas = userLomba::with('lomba')->where('user_id', $userId)->get();
+        $webinars = userWebinar::with('webinar')->where('user_id', $userId)->get();
 
-        // 3. Ambil semua webinar (diperlukan jika Anda ingin menambahkan bagian webinar di view)
-        $semuaWebinar = Webinar::latest()->get();
-
-        // 4. Kirim data ke view
-        return view('halaman.user.dashboarduser', compact('lombaDiikuti', 'semuaWebinar'));
+        return view('halaman.user.dashboardUser', compact('lombas', 'webinars'));
     }
 
 
-    // Halaman Pengumuman
-    public function pengumuman(){
-        return view('halaman.user.pengumumanUser');
+    public function pengumuman()
+    {
+        // Ambil semua pengumuman yang statusnya 'publish', urut dari terbaru
+        $pengumumans = Pengumuman::where('status', 'published')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // Kirim data ke view 'halaman.user.pengumumanUser'
+        return view('halaman.user.pengumumanUser', compact('pengumumans'));
+    }
+
+    /**
+     * Menampilkan detail pengumuman
+     */
+    public function show($id)
+    {
+        $pengumuman = Pengumuman::findOrFail($id);
+
+        return view('halaman.user.pengumumanDetail', compact('pengumuman'));
     }
 
     // Halaman Lomba
@@ -44,5 +56,40 @@ public function index()
     public function seminar(){
         $semuaWebinar = Webinar::latest()->get();
         return view('halaman.user.seminarUser', compact('semuaWebinar'));
+    }
+
+    // Edit Profile User
+    public function edit()
+    {
+        $user = Auth::user(); // ambil data user yang sedang login
+        return view('halaman.user.edit', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'password' => 'nullable|string|min:6|confirmed',
+            'no_hp' => 'nullable|string',
+            'instansi' => 'nullable|string|max:255',
+            'pekerjaan' => 'nullable|string|max:255',
+
+        ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->no_hp = $request->no_hp;
+        $user->instansi = $request->instansi;
+        $user->pekerjaan = $request->pekerjaan;
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
     }
 }

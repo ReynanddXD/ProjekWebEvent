@@ -1,7 +1,7 @@
 @extends('layouts.mainUser')
 @section('title', 'Lomba')
 @section('content')
-    <div class="ml-64 p-6">
+    <div class="ml-0 sm:ml-64 p-4 sm:p-6 transition-all duration-300">
         {{-- ===================== Section Lomba ===================== --}}
         <section id="lomba" class="bg-gray-100 py-16">
             <div class="container mx-auto px-6">
@@ -45,17 +45,15 @@
                                 </ul>
                             </div>
 
-                            <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
+                           <div class="px-6 pt-4 pb-6 flex justify-center space-x-4">
                                 @if ($lomba->panduan)
-
-
                                     <a href="{{ asset('storage/' . $lomba->panduan) }}" target="_blank" download
-                                        class=" bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
-                                        Panduan Lomba
+                                    class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition hover:scale-105 shadow-md text-center">
+                                        Lihat Panduan
                                     </a>
                                 @endif
                                 <a href="{{ route('ulomba.create')}}"
-                                    class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition-colors transform hover:scale-105 shadow-md">
+                                    class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition hover:scale-105 shadow-md text-center">
                                     Daftar Sekarang
                                 </a>
                             </div>

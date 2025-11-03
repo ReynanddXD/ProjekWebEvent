@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LombaController;
+use App\Http\Controllers\User\PengumumanUserController;
 use App\Http\Controllers\WebinarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboarduserController;
@@ -90,7 +91,16 @@ Route::middleware(['auth', 'verified', 'RoleCheck:user, admin'])->group(function
     Route::get('/dashboardUser/pengumuman', [DashboarduserController::class, 'pengumuman'])->name('dashboardUser.pengumuman');
     Route::get('/dashboardUser/lomba', [DashboarduserController::class, 'lomba'])->name('dashboardUser.lomba');
     Route::get('/dashboardUser/seminar', [DashboarduserController::class, 'seminar'])->name('dashboardUser.seminar');
-
+    Route::get('/dashboardUser/pengumuman', [DashboarduserController::class, 'pengumuman'])->name('dashboardUser.pengumuman');
+    // Edit profile user
+    Route::get('/profile/edit', [DashboarduserController::class, 'edit'])->name('dashboardUser.edit');
+    Route::post('/profile/update', [DashboarduserController::class, 'update'])->name('dashboardUser.update');
+    // // Detail pengumuman
+    Route::get('/pengumuman/{id}', [DashboarduserController::class, 'show'])->name('pengumuman.show');
+    // Checkout pembayaran
+    Route::get('/payment/checkout/{lomba_id}', [LombaUser::class, 'checkout'])->name('payment.checkout');
+    // Sukses pembayaran
+    Route::get('/payment/success', [LombaUser::class, 'success'])->name('payment.success');
     // route lomba dan webinar user
     Route::get('/user/lomba', [LombaUser::class, 'create'])->name('ulomba.create');
     Route::post('/user/lomba/daftar', [LombaUser::class, 'store'])->name('ulomba.store');

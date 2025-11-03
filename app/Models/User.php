@@ -24,6 +24,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'no_hp',
+        'instansi',
+        'pekerjaan',
     ];
 
     /**
@@ -49,11 +52,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function lombaDiikuti()
+    public function lombasDiikuti()
     {
-        // Asumsi nama tabel pivot adalah 'lomba_user'
-        return $this->belongsToMany(Lomba::class, 'lomba_user', 'user_id', 'lomba_id')
-                    ->withTimestamps(); // Jika Anda memiliki kolom created_at/updated_at di pivot
+        return $this->hasMany(userLomba::class, 'user_id');
+    }
+
+    public function webinarsDiikuti()
+    {
+        return $this->hasMany(userWebinar::class, 'user_id');
     }
 
 

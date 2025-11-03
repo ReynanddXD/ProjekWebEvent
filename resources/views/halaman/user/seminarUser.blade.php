@@ -2,7 +2,7 @@
 @section('title', 'Seminar')
 @section('content')
 
-    <div class="ml-64 p-6">
+    <div class="ml-0 sm:ml-64 p-4 sm:p-6 transition-all duration-300">
         {{-- ===================== Section Webinar ===================== --}}
         <section id="webinar" class="bg-gray-100 py-16">
             <div class="container mx-auto px-6">
@@ -39,9 +39,9 @@
                             </div>
                             {{-- Tombol lihat dan Daftar --}}
                             <div class="px-6 pt-4 pb-6 flex justify-center items-center space-x-4">
-                                <a href="#"
+                                <a href="{{ asset('storage/' . $webinar->gambar) }}" target="_blank" download
                                 class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2 text-sm font-medium transition hover:scale-105 shadow-md text-center">
-                                    Lihat Event
+                                    Lihat Poster
                                 </a>
                                 <a href="{{ route('uwebinar.create')}}"
                                 class="bg-amber-500 hover:bg-amber-600 text-white rounded-full px-6 py-2 text-sm font-medium transition hover:scale-105 shadow-md text-center">

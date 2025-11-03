@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('halaman.dashboard');
         }
 
-        return redirect()->route('landingPage');
+        return redirect()->route('dashboardUser');
     }
 
     /**
