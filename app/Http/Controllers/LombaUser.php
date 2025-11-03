@@ -40,11 +40,11 @@ class LombaUser extends Controller
         ]);
 
         // ✅ Ambil user_id dari session tanpa auth()->id() atau user()
-        $userId = session()->get(Auth::getName());
-        $validatedData['user_id'] = $userId;
+        // $userId = session()->get(Auth::getName());
+        // $validatedData['user_id'] = $userId;
 
         // Cek apakah user sudah mendaftar lomba ini sebelumnya
-        $sudahTerdaftar = \App\Models\UserLomba::where('user_id', $userId)
+        $sudahTerdaftar = \App\Models\UserLomba::where('email', $validatedData['email'])
             ->where('lomba_id', $request->lomba_id)
             ->exists();
 
