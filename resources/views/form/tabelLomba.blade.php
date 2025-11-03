@@ -81,23 +81,25 @@
                         yang konsisten dari file 'pengumuman' sebelumnya.
                     --}}
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @foreach ($semuaLomba as $lomba )
+
                         <div class="flex items-center gap-2">
                             {{-- Ganti '#' dengan route edit yang benar --}}
-                            <a href="{{ route('lomba.edit', $lomba->id) }}" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">
+
+                            <a href="{{ route('lomba.edit', $item->id) }}" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600">
                                 <i class="fas fa-edit"></i>
                             </a>
 
 
 
                             {{-- Ganti '#' dengan route destroy yang benar --}}
-                            <form action="{{ route('lomba.destroy', $lomba->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                            <form action="{{ route('lomba.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center justify-center p-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
+
                         </div>
                     </td>
                 </tr>
@@ -113,7 +115,7 @@
                     </td>
                 </tr>
                 @endforelse
-                @endforeach
+
             </tbody>
         </table>
     </div>
