@@ -44,7 +44,7 @@
 
 
             <div class="px-6 py-4 border-b border-gray-200">
-                <h6 class="m-0 font-bold text-blue-600">Aktivitas Terbaru</h6>
+                <h6 class="top-4 text-xl font-bold text-gray-800 mb-4">Aktivitas Terbaru</h6>
             </div>
 
             <div class="p-0">

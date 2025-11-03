@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminPesertaController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LombaController;
@@ -129,6 +130,9 @@ Route::resource('/admin/pengumuman', PengumumanController::class);
 Route::get('/users/{user}/edit', [UserManagementController::class, 'edit'])->name('admin.users.edit');
 Route::put('/users/{user}', [UserManagementController::class, 'update'])->name('admin.users.update');
 Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('admin.users.destroy');
+
+//rute peserta
+Route::get('/peserta', [AdminPesertaController::class, 'index']) ->name('admin.peserta.index');
 
 // Di dalam grup middleware admin Anda
 // Route::resource('/admin/pengumuman', PengumumanController::class);

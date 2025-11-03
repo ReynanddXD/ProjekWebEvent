@@ -51,7 +51,7 @@
         <div class="stats shadow">
             <div class="stat">
                 <div class="stat-title">Total Pendaftar</div>
-                <div class="stat-value"></div>
+                <div class="stat-value">{{ $totalPendaftar }}</div>
                 {{-- <div class="stat-desc">21% more than last month</div> --}}
             </div>
         </div>

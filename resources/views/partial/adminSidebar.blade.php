@@ -18,7 +18,7 @@
 
         <ul class="space-y-2 font-medium flex-1">
                 <div class="text-xl font-bold text-indigo-700 mb-6 tracking-wide">
-   DASHBORD UTAMA
+   DASHBOARD UTAMA
 </div>
             <li>
                 <a href="{{ route('halaman.dashboard') }}"
@@ -34,7 +34,7 @@
             <li>
                 <a href="{{ route('webinar.index') }}"
                     class="flex items-center p-2 rounded-lg hover:bg-indigo-700 transition-colors group">
-                    <span class="ml-3 text-gray-500 group-hover:text-white"> <i class="fa-solid fa-chalkboard-teacher"></i> Webinar</span>
+                    <span class="ml-3 text-gray-500 group-hover:text-white"> <i class="fa-solid fa-chalkboard-teacher"></i> Seminar</span>
                 </a>
             </li>
 {{-- Lomba --}}
@@ -51,6 +51,14 @@
                     class="flex items-center p-2 rounded-lg hover:bg-indigo-700 transition-colors group">
 
                     <span class="ml-3 text-gray-500 group-hover:text-white"><i class="fa-solid fa-bullhorn"></i> Pengumuman</span>
+                </a>
+            </li>
+{{-- peserta --}}
+  <li>
+                <a href="{{ route('admin.peserta.index') }}"
+                    class="flex items-center p-2 rounded-lg hover:bg-indigo-700 transition-colors group">
+
+                    <span class="ml-3 text-gray-500 group-hover:text-white"><i class="fa-solid fa-person" style="color: #838383;"></i> Peserta</span>
                 </a>
             </li>
                  <div class="px-2 pt-4 pb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
