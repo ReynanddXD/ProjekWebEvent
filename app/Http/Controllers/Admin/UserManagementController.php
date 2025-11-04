@@ -32,7 +32,7 @@ class UserManagementController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin', // <-- PENTING: Set role sebagai 'admin'
+            'role' => 'admin', //  Set role sebagai 'admin'
         ]);
 
         // Redirect kembali ke halaman daftar admin
@@ -49,6 +49,8 @@ $request->validate(['name' => ['required', 'string', 'max:255'],
         // Buat password 'nullable' (boleh kosong)
         'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
     ]);
+
+    //ngecek password diisi atau enggak
     // Ambil data yang divalidasi
     $validatedData = $request->only('name', 'email');
 // Cek jika admin mengisi password baru
@@ -56,7 +58,7 @@ $request->validate(['name' => ['required', 'string', 'max:255'],
         $validatedData['password'] = Hash::make($request->password);
     }
 
-    // Update data user
+    // Update data user aka simpan perubahan
     $user->update($validatedData);
 
     // Ganti pesan suksesnya
@@ -64,6 +66,8 @@ $request->validate(['name' => ['required', 'string', 'max:255'],
         ->with('success', 'Data admin berhasil diperbarui.');
 
     }
+
+    //hapus admin berdasarkan id
        public function destroy(User $user)
     {
         $user->delete();

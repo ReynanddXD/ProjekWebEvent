@@ -15,10 +15,7 @@
             <h6 class="m-0 font-bold text-blue-600">Semua Peserta</h6>
         </div>
 
-        {{--
-            'card-body' -> 'p-6'. Wrapper ini sekarang berisi
-            tabel DAN pagination.
-        --}}
+
         <div class="p-6">
             {{-- 'table-responsive' -> 'overflow-x-auto' --}}
             <div class="overflow-x-auto">

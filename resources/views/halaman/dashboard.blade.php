@@ -56,21 +56,21 @@
                         <li class="flex justify-between items-center px-6 py-4">
                             {{-- Wrapper untuk badge dan link agar rapi --}}
                             <div class="flex items-center">
-                                @if($aktivitas->tipe == 'Lomba')
-                                    {{-- 'badge badge-primary' (Bootstrap) -> Badge Tailwind --}}
+                                @if($aktivitas->tipe == 'lomba')
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                         Lomba
                                     </span>
-                                @elseif($aktivitas->tipe =='Webinar')
-                                    {{-- 'badge badge-success' (Bootstrap) -> Badge Tailwind --}}
+                                @elseif($aktivitas->tipe =='webinar')
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                         Webinar
                                     </span>
-                                {{--
-                                    TYPO FIX: Saya perbaiki 'Admin')>' menjadi 'Admin')'
-                                --}}
+                                       @elseif($aktivitas->tipe =='pengumuman')
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                        pengumuman
+                                    </span>
+
                                 @elseif($aktivitas->tipe == 'Admin')
-                                    {{-- 'badge badge-warning' (Bootstrap) -> Badge Tailwind --}}
+
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                                         Admin
                                     </span>

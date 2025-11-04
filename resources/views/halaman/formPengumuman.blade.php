@@ -17,14 +17,14 @@
 
                 {{-- FIELD 1: Judul Pengumuman --}}
                 <div>
-                    {{-- Style label standar Tailwind --}}
+
                     <label for="judul" class="block text-sm font-medium mb-1 text-gray-700">Judul Pengumuman</label>
 
                     <input type="text"
                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 @error('judul') border-red-500 focus:ring-red-500 focus:border-red-500 @enderror"
                            id="judul" name="judul" value="{{ old('judul') }}" required>
 
-                    {{-- 'invalid-feedback' -> Style pesan error Tailwind --}}
+
                     @error('judul')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -78,12 +78,12 @@
 
                 {{-- Wrapper Tombol --}}
                 <div class="flex items-center gap-4">
-                    {{-- 'btn btn-primary' -> Tombol primary Tailwind --}}
+
                     <button type="submit"
                             class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
                         Simpan Pengumuman
                     </button>
-                    {{-- 'btn btn-secondary' -> Tombol secondary Tailwind --}}
+
                     <a href="{{ route('pengumuman.index') }}"
                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition ease-in-out duration-150">
                         Batal

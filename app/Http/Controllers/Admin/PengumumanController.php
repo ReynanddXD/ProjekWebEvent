@@ -38,8 +38,9 @@ class PengumumanController extends Controller
             'kategori' => 'nullable|string',
             'is_pinned' => 'nullable|boolean', // 'is_pinned' akan bernilai 1 jika dicentang
         ]);
-
+        //memastikan saja di centang atau enggak, klo iya berarti bernilai true
         $validatedData['is_pinned'] = $request->has('is_pinned');
+        //buat tabel baru di dalam pengumumman
         Pengumuman::create($validatedData);
 
         return redirect()->route('pengumuman.index')
