@@ -20,6 +20,18 @@
             {{-- 'table-responsive' -> 'overflow-x-auto' --}}
             <div class="overflow-x-auto">
                 {{-- 'table table-bordered' -> 'w-full border-collapse' --}}
+                <div class="flex gap-3 mb-4">
+    <a href="{{ route('peserta.exportExcel') }}"
+        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+        Export Excel
+    </a>
+
+    <a href="{{ route('peserta.exportPdf') }}"
+        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+        Export PDF
+    </a>
+</div>
+
                 <table class="w-full text-black border-collapse" id="dataTable" width="100%" cellspacing="0">
                     <thead class="bg-gray-100">
                         <tr>

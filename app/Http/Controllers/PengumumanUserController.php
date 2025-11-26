@@ -12,7 +12,7 @@ class PengumumanUserController extends Controller
     {
         $pengumumans = Pengumuman::where('status', 'publish')
                             ->orderBy('created_at', 'desc')
-                            ->get();
+                            ->paginate(2);
         return view('halaman.user.pengumumanUser', compact('pengumumans'));
     }
 

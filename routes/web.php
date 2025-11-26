@@ -133,6 +133,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 //rute peserta
     Route::get('/peserta', [AdminPesertaController::class, 'index']) ->name('admin.peserta.index');
+    Route::get('/peserta/export-excel', [AdminPesertaController::class, 'exportExcel'])->name('peserta.exportExcel');
+Route::get('/peserta/export-pdf', [AdminPesertaController::class, 'exportPdf'])->name('peserta.exportPdf');
+
 
 // Di dalam grup middleware admin Anda
 // Route::resource('/admin/pengumuman', PengumumanController::class);

@@ -6,6 +6,7 @@ use App\Models\Lomba;
 use Illuminate\Http\Request;
 // Tambahkan ini di bagian paling atas file controller Anda:
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class LombaController extends Controller
 {
@@ -14,9 +15,29 @@ class LombaController extends Controller
     return view('halaman.dashboardAdminLomba');
 }
 
-public function index(){
-    $semuaLomba = Lomba::latest()->get();
-    return view('form.tabelLomba', compact('semuaLomba'));
+public function index(Request $request){
+    //sorting
+    $sort = $request->get('sort', 'created_at'); // default sorting by created_at
+    $order = $request->get('order', 'desc'); // default order desc
+    $search = $request->get('search', '');
+
+      $query = Lomba::orderBy($sort, $order);
+      if ($search) {
+        $query->where(function($q) use ($search) {
+            $q->where('lomba', 'like', "%{$search}%")
+              ->orWhere('penyelenggara', 'like', "%{$search}%")
+              ->orWhere('kategoriPeserta', 'like', "%{$search}%");
+        });
+    }
+
+    // Pagination
+    $semuaLomba = $query->paginate(2);
+
+    return view('form.tabelLomba', compact('semuaLomba', 'sort', 'order'));
+
+    // $lombas = DB::table('lombas')->paginate(5);
+    // return view('form.tabelLomba', ['lombas' => $lombas]);
+
 }
 
 public function store(Request $request){

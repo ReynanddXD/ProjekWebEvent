@@ -13,18 +13,98 @@
 
 
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <form method="GET" action="{{ route('webinar.index') }}" class="mb-4 flex gap-2">
+            <input type="text" name="search" value="{{ request('search') }}"
+                class="border rounded-md p-2 w-64"
+                placeholder="Cari webinar...">
+
+            <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Cari
+            </button>
+        </form>
+        @if(request('search'))
+        <p class="mb-2 text-sm text-gray-500">
+            Menampilkan hasil untuk: "<strong>{{ request('search') }}</strong>"
+        </p>
+        @endif
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">ID</th>
-                    <th scope="col" class="px-6 py-3">Nama Webinar</th>
+                    <th scope="col" class="px-6 py-3"><a href="{{ route('webinar.index', [
+                    'sort'=>'webinar',
+                    'order'=>($sort == 'webinar' && $order == 'asc')  ? 'desc' : 'asc'
+    ]) }}">
+
+                       Webinar
+                         @if($sort == 'webinar')
+                                    @if($order == 'asc')
+                                        ▲
+                                    @else
+                                        ▼
+                                    @endif
+                                @endif
+                    </a> </th>
                     <th scope="col" class="px-6 py-3">Deskripsi</th>
-                    <th scope="col" class="px-6 py-3">Tanggal</th>
-                    <th scope="col" class="px-6 py-3">Pemateri</th>
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('webinar.index', [
+        'sort' => 'tanggal',
+        'order' => ($sort == 'tanggal' && $order == 'asc') ? 'desc' : 'asc'
+    ]) }}">
+                        Tanggal
+                        @if($sort == 'tanggal')
+                                    @if($order == 'asc')
+                                        ▲
+                                    @else
+                                        ▼
+                                    @endif
+                                @endif
+                    </a>
+                </th>
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('webinar.index', [
+        'sort' => 'pemateri',
+        'order' => ($sort == 'pemateri' && $order == 'asc') ? 'desc' : 'asc'
+    ]) }}">Pemateri
+
+   @if($sort == 'pemateri')
+                                    @if($order == 'asc')
+                                        ▲
+                                    @else
+                                        ▼
+                                    @endif
+                                @endif</a></th>
                     <th scope="col" class="px-6 py-3">Mulai</th>
                     <th scope="col" class="px-6 py-3">Selesai</th>
-                    <th scope="col" class="px-6 py-3">Kategori</th>
-                    <th scope="col" class="px-6 py-3">Tempat</th>
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('webinar.index', [
+        'sort' => 'kategoriWebinar',
+        'order' => ($sort == 'kategoriWebinar' && $order == 'asc') ? 'desc' : 'asc'
+    ]) }}">
+                        Kategori
+                        @if($sort == 'kategoriWebinar')
+                                    @if($order == 'asc')
+                                        ▲
+                                    @else
+                                        ▼
+                                    @endif
+                                @endif
+                    </a>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <a href="{{ route('webinar.index', [
+        'sort' => 'tempat',
+        'order' => ($sort == 'tempat' && $order == 'asc') ? 'desc' : 'asc'
+    ]) }}">
+                        Tempat
+                      @if($sort == 'tempat')
+                                    @if($order == 'asc')
+                                        ▲
+                                    @else
+                                        ▼
+                                    @endif
+                                @endif
+                    </a></th>
                     <th scope="col" class="px-6 py-3">Gambar</th>
 
                     <th scope="col" class="px-6 py-3">
@@ -110,6 +190,10 @@
                 @endforelse
             </tbody>
         </table>
+        {{-- Pagination --}}
+        <div class="mt-6 flex justify-center">
+            {{ $semuaWebinar->appends(request()->all())->links() }}
+        </div>
     </div>
 </div>
 @endsection

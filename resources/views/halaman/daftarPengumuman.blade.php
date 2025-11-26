@@ -130,6 +130,10 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{-- Pagination --}}
+                <div class="mt-6 flex justify-center">
+                    {{ $daftarPengumuman->links() }}
+                    </div>
             </div>
         </div>
     </div>

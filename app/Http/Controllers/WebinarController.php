@@ -11,9 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class WebinarController extends Controller
 {
-    public function index(){
-         $semuaWebinar = Webinar::latest()->get();
-    return view('form.tabelWebinar', compact('semuaWebinar'));
+    public function index(Request $request){
+        $sort = $request->get('sort', 'created_at'); // default sorting by created_at
+    $order = $request->get('order', 'desc'); // default order desc
+        $search = $request->get('search', '');
+        $query = Webinar::orderBy($sort, $order);
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('webinar', 'like', "%{$search}%")
+                  ->orWhere('pemateri', 'like', "%{$search}%")
+                  ->orWhere('kategoriWebinar', 'like', "%{$search}%");
+            });
+        }
+        $semuaWebinar = $query->paginate(2);
+    return view('form.tabelWebinar', compact('semuaWebinar', 'sort', 'order'));
     }
     public function create(){
         return view('halaman.dashboardAdminWebinar');
