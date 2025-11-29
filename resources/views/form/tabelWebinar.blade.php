@@ -11,6 +11,51 @@
         <i class="fas fa-plus mr-2"></i> Tambah Webinar Baru
     </a>
 
+    {{-- Export Data Webinar --}}
+    <div class="relative inline-block text-left transition duration-300 ease-in-out hover:scale-105">
+        <!-- Button -->
+        <button id="exportButtonWebinar"
+            class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
+            Export Data Webinar
+            <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
+
+        <!-- Dropdown Menu muncul di atas tombol -->
+        <div id="exportMenuWebinar"
+            class="hidden absolute right-0 bottom-full mb-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+            <a href="{{ route('admin-export-webinarPdf') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                PDF
+            </a>
+            <a href="{{ route('admin-export-webinarExcel') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                Excel
+            </a>
+            <a href="{{ route('admin-export-webinarJpg') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                JPG
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const exportButtonWebinar = document.getElementById('exportButtonWebinar');
+        const exportMenuWebinar = document.getElementById('exportMenuWebinar');
+
+        // Toggle dropdown
+        exportButtonWebinar.addEventListener('click', (e) => {
+            e.stopPropagation(); // Supaya klik tombol tidak langsung menutup dropdown
+            exportMenuWebinar.classList.toggle('hidden');
+        });
+
+        // Tutup dropdown ketika klik di luar
+        window.addEventListener('click', () => {
+            exportMenuWebinar.classList.add('hidden');
+        });
+    </script>
 
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <form method="GET" action="{{ route('webinar.index') }}" class="mb-4 flex gap-2">
