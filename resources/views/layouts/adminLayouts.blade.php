@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+@vite(['resources/css/app.css', 'resources/css/cardAdmin.css'])
 
-     @vite('resources/css/app.css', 'resources/css/cardAdmin.css')
     <title>Dasboard Admin</title>
 </head>
 <body>
