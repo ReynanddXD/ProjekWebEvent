@@ -14,7 +14,7 @@ class PengumumanController extends Controller
     public function index()
     {
 
-        $dataPengumuman = Pengumuman::latest()->get();
+        $dataPengumuman = Pengumuman::latest()->paginate(2);
         return view('halaman.daftarPengumuman', ['daftarPengumuman'=>$dataPengumuman]);
     }
 
