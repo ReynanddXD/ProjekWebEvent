@@ -28,7 +28,7 @@ Route::get('/dashboard-user',  [DashboarduserController::class, 'index']);
 
 Route::get('/landing-page',function(){
     return view('halaman.landingPage');
-})->name('landingPage');
+})->name('landingPageStatic');
 
 Route::get('/admin/dashboard', function () {
     return view('halaman.dashboard');
@@ -139,7 +139,32 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 });
 
-//rute pengumuman
+//rute exposrt laporan
+Route::prefix('admin')->group(function () {
+    
+    // Export Webinar
+    Route::get('export/webinar/pdf', [DashboardAdminController::class, 'exportWebinarPDF'])
+        ->name('admin-export-webinarPdf');
+
+    Route::get('export/webinar/excel', [DashboardAdminController::class, 'exportWebinarExcel'])
+        ->name('admin-export-webinarExcel');
+    
+    Route::get('export/webinar/jpg', [DashboardAdminController::class, 'exportWebinarJPG'])
+        ->name('admin-export-webinarJpg');
+
+    // Export Lomba
+    Route::get('export/lomba/pdf', [DashboardAdminController::class, 'exportPDFLomba'])
+        ->name('admin-export-lombaPdf');
+
+    Route::get('export/lomba/excel', [DashboardAdminController::class, 'exportExcelLomba'])
+        ->name('admin-export-lombaExcel');
+
+    Route::get('export/lomba/jpg', [DashboardAdminController::class, 'exportJPGLomba'])
+        ->name('admin-export-lombaJpg');
+
+
+});
+
 
 
 

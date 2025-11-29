@@ -19,7 +19,55 @@
        class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
         <i class="fas fa-plus mr-2"></i> Tambah Lomba Baru
     </a>
+    
+    {{-- Export Data Lomba --}}
+    <!-- Export Data -->
+    <div class="relative inline-block text-left">
+        <!-- Button -->
+        <button id="exportButton"
+            class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
+            Export Data Lomba
+            <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
 
+        <!-- Dropdown Menu -->
+        <div id="exportMenu"
+            class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+            <a href="{{ route('admin-export-lombaPdf') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                PDF
+            </a>
+            <a href="{{ route('admin-export-lombaExcel') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                Excel
+            </a>
+            <a href="{{ route('admin-export-lombaJpg') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                JPG
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const exportButton = document.getElementById('exportButton');
+        const exportMenu = document.getElementById('exportMenu');
+
+        // Toggle dropdown
+        exportButton.addEventListener('click', () => {
+            exportMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!exportButton.contains(e.target) && !exportMenu.contains(e.target)) {
+                exportMenu.classList.add('hidden');
+            }
+        });
+    </script>
+    
     {{-- Wrapper tabel sudah bagus, tidak diubah --}}
     <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
