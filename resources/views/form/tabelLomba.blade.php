@@ -7,7 +7,7 @@
     agar konsisten dengan halaman admin lainnya.
     --}}
     <div class="px-6 py-4">
-        <h2 class="text-2xl font-bold">Manajemen Data Lomba</h2>
+        <h2 class="text-2xl font-bold">Manajemen Data Lomba </h2>
         <p class="mb-6 text-gray-600">Daftar semua lomba yang telah di input.</p>
 
         {{--
