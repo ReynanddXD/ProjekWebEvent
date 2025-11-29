@@ -168,6 +168,14 @@ Route::prefix('admin')->group(function () {
 
 });
 
+// Export Semua Peserta (Lomba + Webinar)
+Route::get('/admin/export-all/pdf', [AdminPesertaController::class, 'exportAllPdf'])->name('admin-export-allPdf');
+Route::get('/admin/export-all/excel', [AdminPesertaController::class, 'exportAllExcel'])->name('admin-export-allExcel');
+Route::get('/admin/export-all/jpg', [AdminPesertaController::class, 'exportAllJpg'])->name('admin-export-allJpg');
 
+// Export User Management
+Route::get('users/export/pdf', [App\Http\Controllers\Admin\UserManagementController::class, 'exportPdf'])->name('admin.users.exportPdf');
+Route::get('users/export/excel', [App\Http\Controllers\Admin\UserManagementController::class, 'exportExcel'])->name('admin.users.exportExcel');
+Route::get('users/export/jpg', [App\Http\Controllers\Admin\UserManagementController::class, 'exportJpg'])->name('admin.users.exportJpg');
 
 

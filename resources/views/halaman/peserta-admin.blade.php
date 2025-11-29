@@ -9,11 +9,54 @@
     {{-- 'card shadow mb-4' (Bootstrap) -> Styling kartu Tailwind --}}
     <div class="bg-white overflow-hidden shadow-lg rounded-lg mb-6">
 
-        {{-- 'card-header py-3' -> Styling header kartu Tailwind --}}
-        <div class="px-6 py-4 border-b border-gray-200">
-            {{-- 'font-weight-bold' -> 'font-bold', 'text-primary' -> 'text-blue-600' --}}
-            <h6 class="m-0 font-bold text-blue-600">Semua Peserta</h6>
+       {{-- Card Header dengan Tombol Export di sebelah kanan --}}
+<div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+    {{-- Judul --}}
+    <h6 class="m-0 font-bold text-blue-600">Semua Peserta</h6>
+
+    {{-- Tombol Export --}}
+    <div class="relative inline-block text-left">
+        <button id="exportButton"
+            class="inline-flex items-center px-4 py-2 bg-purple-600 border border-transparent rounded-md font-semibold text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition ease-in-out duration-150">
+            Export Data
+            <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
+
+        {{-- Dropdown Menu --}}
+        <div id="exportMenu"
+            class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+            <a href="{{ route('admin-export-allPdf') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">
+                PDF
+            </a>
+            <a href="{{ route('admin-export-allExcel') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">
+                Excel
+            </a>
+            <a href="{{ route('admin-export-allJpg') }}"
+                class="block px-4 py-2 text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">
+                JPG
+            </a>
         </div>
+    </div>
+</div>
+
+<script>
+    const exportButton = document.getElementById('exportButton');
+    const exportMenu = document.getElementById('exportMenu');
+
+    exportButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Supaya klik tombol tidak langsung menutup dropdown
+        exportMenu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', () => {
+        exportMenu.classList.add('hidden');
+    });
+</script>
 
 
         <div class="p-6">

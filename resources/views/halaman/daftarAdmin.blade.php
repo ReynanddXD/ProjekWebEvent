@@ -56,19 +56,57 @@
     --}}
     <div class="bg-white overflow-hidden shadow-lg rounded-lg mb-6">
 
-        {{--
-            'card-header py-3' (Bootstrap) -> 'px-6 py-4' dengan border bawah.
-            Padding 'py-3' (BS 1rem) -> 'py-4' (TW 1rem).
-            Padding 'px' default (BS 1.25rem) -> 'px-6' (TW 1.5rem, sedikit lebih besar).
-        --}}
-        <div class="px-6 py-4 border-b border-gray-200">
-            {{--
-                'm-0' -> 'm-0'
-                'font-weight-bold' -> 'font-bold'
-                'text-primary' (Bootstrap) -> 'text-blue-600' (Tailwind)
-            --}}
-            <h6 class="m-0 font-bold text-blue-600">Data Admin</h6>
+    {{-- Header Card dengan Judul dan Export Button Sejajar --}}
+    <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+        {{-- Judul --}}
+        <h6 class="m-0 font-bold text-blue-600 text-lg">Data Admin</h6>
+
+        {{-- Export Data Admin --}}
+        <div class="relative inline-block text-left">
+            <!-- Button -->
+            <button id="exportButton"
+                class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-in-out duration-150">
+                Export Data Admin
+                <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="exportMenu"
+                class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                <a href="{{ route('admin.users.exportPdf') }}"
+                    class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                    PDF
+                </a>
+                <a href="{{ route('admin.users.exportExcel') }}"
+                    class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                    Excel
+                </a>
+                <a href="{{ route('admin.users.exportJpg') }}"
+                    class="block px-4 py-2 text-gray-700 hover:bg-green-100 hover:text-green-700 transition">
+                    JPG
+                </a>
+            </div>
         </div>
+    </div>
+
+    <script>
+        const exportButton = document.getElementById('exportButton');
+        const exportMenu = document.getElementById('exportMenu');
+
+        // Toggle dropdown
+        exportButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            exportMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', () => exportMenu.classList.add('hidden'));
+    </script>
+
+
 
         {{-- 'card-body' (Bootstrap padding 1.25rem) -> 'p-6' (Tailwind 1.5rem) --}}
         <div class="p-6">
