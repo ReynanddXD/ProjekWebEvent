@@ -1,6 +1,12 @@
+
+@php
+    use Illuminate\Support\Str;
+@endphp
 @extends('layouts.mainUser')
 @section('title', 'Pengumuman')
 @section('content')
+
+
 <div class="ml-0 sm:ml-64 p-4 sm:p-6 transition-all duration-300">
 
     {{-- ===================== Section Pengumuman ===================== --}}
@@ -28,15 +34,15 @@
                                 </h2>
 
                                 <!-- Konten ringkas -->
-                                {{-- <p class="mt-3">
-                                   {!! $pengumuman->konten !!}
-                                </p> --}}
+                            <p class="mt-3 ">
+                                   {!!Str::words (strip_tags( $pengumuman->konten), 6, '...') !!}
+                                </p>
 
                                 <!-- Bagian bawah: Tanggal + tombol -->
                                 <div class="flex justify-between items-center mt-6">
                                     <span class="text-sm text-gray-500"> {{ \Carbon\Carbon::parse($pengumuman->created_at)->translatedFormat('d F Y') }}</span>
                                     <a href="{{ route('pengumuman.show', $pengumuman->id) }}"
-                                    class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
+                                    class="bg-indigo-600 text-white px-3 py-1.5  text-sm  rounded-full hover:bg-indigo-700 transition">
                                         Baca Selengkapnya
                                     </a>
                                 </div>
