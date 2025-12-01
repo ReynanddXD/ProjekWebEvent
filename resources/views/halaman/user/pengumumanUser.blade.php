@@ -27,7 +27,7 @@
                     @forelse ($pengumumans as $pengumuman)
                         @if($pengumuman->status === 'published')
                         <div class="w-full px-1">
-                            <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col justify-between h-full">
+                            <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col justify-between min-h-[280px]">
                                 <!-- Judul -->
                                 <h2 class="text-xl font-bold text-indigo-700">
                                   {{ $pengumuman->judul }}
@@ -35,7 +35,7 @@
 
                                 <!-- Konten ringkas -->
                             <p class="mt-3 ">
-                                   {!!Str::words (strip_tags( $pengumuman->konten), 6, '...') !!}
+                                   {!!Str::words (strip_tags( $pengumuman->konten), 20, '...') !!}
                                 </p>
 
                                 <!-- Bagian bawah: Tanggal + tombol -->
