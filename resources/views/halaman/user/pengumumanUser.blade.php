@@ -24,20 +24,18 @@
                             <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col justify-between h-full">
                                 <!-- Judul -->
                                 <h2 class="text-xl font-bold text-indigo-700">
-                                    Informasi Lanjutan Webinar Artificial Intelligence
+                                  {{ $pengumuman->judul }}
                                 </h2>
 
                                 <!-- Konten ringkas -->
                                 <p class="mt-3">
-                                    1. Tema Kegiatan<br>
-                                    <em>“Pemanfaatan Artificial Intelligence dalam Dunia Pendidikan dan Industri Modern”</em><br>
-                                    2. Waktu dan Pelaksanaan...
+                                   {!! $pengumuman->konten !!}
                                 </p>
 
                                 <!-- Bagian bawah: Tanggal + tombol -->
                                 <div class="flex justify-between items-center mt-6">
-                                    <span class="text-sm text-gray-500">03 November 2025</span>
-                                    <a href="{{ route('pengumuman.show', $pengumuman->id) }}" 
+                                    <span class="text-sm text-gray-500"> {{ \Carbon\Carbon::parse($pengumuman->created_at)->translatedFormat('d F Y') }}</span>
+                                    <a href="{{ route('pengumuman.show', $pengumuman->id) }}"
                                     class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
                                         Baca Selengkapnya
                                     </a>
