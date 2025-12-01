@@ -28,9 +28,9 @@
                                 </h2>
 
                                 <!-- Konten ringkas -->
-                                <p class="mt-3">
+                                {{-- <p class="mt-3">
                                    {!! $pengumuman->konten !!}
-                                </p>
+                                </p> --}}
 
                                 <!-- Bagian bawah: Tanggal + tombol -->
                                 <div class="flex justify-between items-center mt-6">
